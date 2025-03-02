@@ -1,3 +1,10 @@
+<!-- TOC start -->
+
+- [Kubernetes](#kubernetes)
+
+<!-- TOC end -->
+
+<!-- TOC --><a name="kubernetes"></a>
 # Kubernetes
 Kubernetes (often abbreviated as K8s) is an open-source platform designed to automate the deployment, scaling, and operation of application containers. It provides a framework to run distributed systems resiliently, handling scaling and failover for your applications, providing deployment patterns, and more. Below is a detailed explanation of Kubernetes' core components and their roles in the ecosystem.
 

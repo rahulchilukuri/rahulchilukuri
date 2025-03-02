@@ -1,3 +1,10 @@
+<!-- TOC start -->
+
+- [10 Best Practices for Writing Scalable Node.js Applications](#10-best-practices-for-writing-scalable-nodejs-applications)
+
+<!-- TOC end -->
+
+<!-- TOC --><a name="10-best-practices-for-writing-scalable-nodejs-applications"></a>
 # 10 Best Practices for Writing Scalable Node.js Applications
 Node.js is a powerful JavaScript runtime built on Chrome's V8 engine, allowing developers to build fast, scalable, and efficient applications. However, writing scalable applications requires following best practices to ensure performance, maintainability, and efficiency as your application grows.
 

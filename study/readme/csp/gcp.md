@@ -1,12 +1,37 @@
+<!-- TOC start -->
+
+- [Google Kubernetes Engine (GKE)](#google-kubernetes-engine-gke)
+  - [Overview](#overview)
+  - [Key Features](#key-features)
+  - [Architecture](#architecture)
+  - [Use Cases](#use-cases)
+  - [Best Practices](#best-practices)
+  - [Conclusion](#conclusion)
+- [Google Compute Engine (GCE) \& Load Balancers](#google-compute-engine-gce--load-balancers)
+  - [Overview](#overview-1)
+  - [Key Features](#key-features-1)
+  - [Use Cases](#use-cases-1)
+  - [Best Practices](#best-practices-1)
+  - [Conclusion](#conclusion-1)
+- [Google Cloud Load Balancers](#google-cloud-load-balancers)
+  - [Types of Google Cloud Load Balancers](#types-of-google-cloud-load-balancers)
+  - [Key Features of Google Cloud Load Balancers](#key-features-of-google-cloud-load-balancers)
+  - [Use Cases](#use-cases-2)
+  - [Best Practices](#best-practices-2)
+  - [Conclusion](#conclusion-2)
+
+<!-- TOC end -->
+
+<!-- TOC --><a name="google-kubernetes-engine-gke"></a>
 # Google Kubernetes Engine (GKE)
 
 
-<!-- TOC --><a name="overview-8"></a>
+<!-- TOC --><a name="overview"></a>
 ## Overview
 Google Kubernetes Engine (GKE) is a managed Kubernetes service provided by Google Cloud Platform (GCP). It allows users to deploy, manage, and scale containerized applications using Kubernetes, an open-source container orchestration platform. GKE abstracts much of the complexity associated with managing Kubernetes clusters, providing a robust, scalable, and secure environment for running containerized workloads.
 
 
-<!-- TOC --><a name="key-features-21"></a>
+<!-- TOC --><a name="key-features"></a>
 ## Key Features
 1. Managed Kubernetes Clusters
 Automated Cluster Management: GKE handles the provisioning, upgrading, and scaling of Kubernetes clusters, reducing operational overhead.
@@ -46,7 +71,7 @@ Cloud Code: Integrated development environment (IDE) support for Kubernetes deve
 Marketplace: Easy deployment of third-party applications and services.
 
 
-<!-- TOC --><a name="architecture-12"></a>
+<!-- TOC --><a name="architecture"></a>
 ## Architecture
 1. Control Plane
 The control plane is managed by Google and includes the Kubernetes API server, scheduler, and controller manager.
@@ -69,7 +94,7 @@ Services: Provide stable IP addresses and DNS names for pods, enabling load bala
 Ingress: Manages external access to services, typically HTTP/HTTPS, with features like SSL termination and load balancing.
 
 
-<!-- TOC --><a name="use-cases-10"></a>
+<!-- TOC --><a name="use-cases"></a>
 ## Use Cases
 1. Microservices Architecture
 GKE is ideal for deploying and managing microservices-based applications, providing scalability, resilience, and ease of management.
@@ -84,7 +109,7 @@ GKE can be used to deploy and manage machine learning models using frameworks li
 GKE can be part of a hybrid or multi-cloud strategy, integrating with on-premises infrastructure or other cloud providers.
 
 
-<!-- TOC --><a name="best-practices-6"></a>
+<!-- TOC --><a name="best-practices"></a>
 ## Best Practices
 1. Resource Management
 Define resource requests and limits for pods to ensure efficient utilization of cluster resources.
@@ -107,7 +132,7 @@ Regularly back up etcd data and critical application data.
 Implement a disaster recovery plan that includes cluster restoration and application failover.
 
 
-<!-- TOC --><a name="conclusion-17"></a>
+<!-- TOC --><a name="conclusion"></a>
 ## Conclusion
 Google Kubernetes Engine (GKE) is a powerful and flexible platform for managing containerized applications at scale. Its deep integration with Google Cloud services, robust security features, and automated management capabilities make it an ideal choice for organizations looking to leverage Kubernetes without the operational overhead. By following best practices and leveraging GKE’s advanced features, organizations can achieve high availability, scalability, and security for their applications.
 
@@ -115,12 +140,12 @@ Google Kubernetes Engine (GKE) is a powerful and flexible platform for managing 
 <!-- TOC --><a name="google-compute-engine-gce-load-balancers"></a>
 # Google Compute Engine (GCE) & Load Balancers
 
-<!-- TOC --><a name="overview-9"></a>
+<!-- TOC --><a name="overview-1"></a>
 ## Overview
 Google Compute Engine (GCE) is a core component of Google Cloud Platform (GCP) that provides scalable and flexible virtual machine (VM) instances for running workloads in the cloud. It allows users to launch and manage VMs, configure networking, and integrate with other GCP services. GCE is designed for high performance, reliability, and scalability, making it suitable for a wide range of applications, from small-scale projects to enterprise-level workloads.
 
 
-<!-- TOC --><a name="key-features-22"></a>
+<!-- TOC --><a name="key-features-1"></a>
 ## Key Features
 Virtual Machine Instances:
 
@@ -179,7 +204,7 @@ Shielded VMs for advanced security against rootkits and boot-level attacks.
 VPC Service Controls to restrict access to resources.
 
 
-<!-- TOC --><a name="use-cases-11"></a>
+<!-- TOC --><a name="use-cases-1"></a>
 ## Use Cases
 Web Hosting:
 
@@ -235,7 +260,7 @@ Use Cloud Monitoring and Cloud Logging to track performance and troubleshoot iss
 Enable autoscaling for dynamic workloads.
 
 
-<!-- TOC --><a name="best-practices-7"></a>
+<!-- TOC --><a name="best-practices-1"></a>
 ## Best Practices
 Use Managed Instance Groups (MIGs):
 
@@ -301,7 +326,7 @@ Monitor Performance:
 Use Cloud Monitoring to track metrics like CPU usage, network traffic, and request latency.
 
 
-<!-- TOC --><a name="conclusion-18"></a>
+<!-- TOC --><a name="conclusion-1"></a>
 ## Conclusion
 Google Compute Engine is a powerful and flexible cloud computing service that enables users to deploy and manage VM instances with ease. Its integration with other GCP services, robust security features, and global infrastructure make it an ideal choice for a wide range of workloads. By following best practices and leveraging GCE’s capabilities, organizations can achieve scalability, reliability, and cost efficiency in their cloud deployments.
 
@@ -468,7 +493,7 @@ Security:
 Supports Google Cloud Armor for DDoS protection and WAF (Web Application Firewall) capabilities.
 
 
-<!-- TOC --><a name="use-cases-12"></a>
+<!-- TOC --><a name="use-cases-2"></a>
 ## Use Cases
 Web Applications:
 
@@ -491,7 +516,7 @@ API Management:
 Use Global External HTTP(S) Load Balancer with URL maps for API routing and versioning.
 
 
-<!-- TOC --><a name="best-practices-8"></a>
+<!-- TOC --><a name="best-practices-2"></a>
 ## Best Practices
 Enable Health Checks:
 
@@ -518,8 +543,7 @@ Optimize SSL/TLS Configuration:
 Use modern SSL/TLS protocols and ciphers for secure communication.
 
 
-<!-- TOC --><a name="conclusion-19"></a>
+<!-- TOC --><a name="conclusion-2"></a>
 ## Conclusion
 Google Cloud Load Balancers provide a robust, scalable, and flexible solution for distributing traffic across applications and services. By leveraging the appropriate type of load balancer for your use case, you can ensure high availability, low latency, and efficient traffic management for your applications on Google Cloud Platform.
 
-<!-- TOC --><a name="distributed-databases-1"></a>

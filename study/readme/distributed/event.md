@@ -1,11 +1,67 @@
+<!-- TOC start -->
+
+- [Pub/Sub (GCP)](#pubsub-gcp)
+  - [Overview](#overview)
+  - [Key Concepts](#key-concepts)
+  - [Architecture](#architecture)
+  - [Features](#features)
+  - [Use Cases](#use-cases)
+  - [Conclusion](#conclusion)
+- [Kafka](#kafka)
+  - [Introduction](#introduction)
+  - [Core Concepts](#core-concepts)
+  - [Architecture](#architecture-1)
+  - [Key Features](#key-features)
+  - [Use Cases](#use-cases-1)
+  - [Kafka APIs](#kafka-apis)
+  - [Kafka Ecosystem](#kafka-ecosystem)
+  - [Issues \& Challenges](#issues--challenges)
+  - [Best Practices](#best-practices)
+  - [Conclusion](#conclusion-1)
+- [Kafka Connect](#kafka-connect)
+  - [Introduction](#introduction-1)
+  - [Key Concepts](#key-concepts-1)
+  - [Architecture](#architecture-2)
+  - [Use Cases](#use-cases-2)
+  - [Best Practices](#best-practices-1)
+  - [Conclusion](#conclusion-2)
+- [Kafka Streams](#kafka-streams)
+  - [Overview](#overview-1)
+  - [Key Concepts](#key-concepts-2)
+  - [Architecture](#architecture-3)
+  - [Use Cases](#use-cases-3)
+  - [Conclusion](#conclusion-3)
+- [RabbitMQ](#rabbitmq)
+  - [Overview](#overview-2)
+  - [Key Concepts](#key-concepts-3)
+  - [Architecture](#architecture-4)
+  - [Features](#features-1)
+  - [Advantages](#advantages)
+  - [Limitations](#limitations)
+  - [Best Practices](#best-practices-2)
+  - [Conclusion](#conclusion-4)
+- [Apache Spark](#apache-spark)
+  - [Introduction](#introduction-2)
+  - [Key Features](#key-features-1)
+  - [Core Components](#core-components)
+  - [Architecture](#architecture-5)
+  - [Resilient Distributed Datasets (RDDs)](#resilient-distributed-datasets-rdds)
+  - [Use Cases](#use-cases-4)
+  - [Advantages](#advantages-1)
+  - [Challenges](#challenges)
+  - [Conclusion](#conclusion-5)
+
+<!-- TOC end -->
+
+<!-- TOC --><a name="pubsub-gcp"></a>
 # Pub/Sub (GCP)
 
-<!-- TOC --><a name="overview-2"></a>
+<!-- TOC --><a name="overview"></a>
 ## Overview
 Google Cloud Pub/Sub is a fully-managed, scalable, and reliable messaging service that allows you to decouple services that produce events from services that process events. It is designed to provide low-latency, durable messaging that can scale to millions of messages per second.
 
 
-<!-- TOC --><a name="key-concepts-1"></a>
+<!-- TOC --><a name="key-concepts"></a>
 ## Key Concepts
 Topics: A named resource to which messages are sent by publishers.
 
@@ -18,7 +74,7 @@ Publishers: Applications that send messages to a topic.
 Subscribers: Applications that receive messages from a subscription.
 
 
-<!-- TOC --><a name="architecture-3"></a>
+<!-- TOC --><a name="architecture"></a>
 ## Architecture
 Publisher: Sends messages to a topic.
 
@@ -42,7 +98,7 @@ Global Messaging: Pub/Sub supports global messaging, allowing publishers and sub
 Integration: Pub/Sub integrates seamlessly with other Google Cloud services like Dataflow, BigQuery, and Cloud Functions.
 
 
-<!-- TOC --><a name="use-cases-3"></a>
+<!-- TOC --><a name="use-cases"></a>
 ## Use Cases
 Event-Driven Architecture: Decouple microservices by using Pub/Sub to send events between services.
 
@@ -103,7 +159,7 @@ Security: Use IAM roles and policies to control access to topics and subscriptio
 Cost Management: Monitor and optimize the number of messages and the size of messages to control costs.
 
 
-<!-- TOC --><a name="conclusion-7"></a>
+<!-- TOC --><a name="conclusion"></a>
 ## Conclusion
 Google Cloud Pub/Sub is a powerful messaging service that enables scalable, reliable, and low-latency communication between services. By leveraging Pub/Sub, you can build robust, event-driven architectures that can handle high volumes of data and integrate seamlessly with other Google Cloud services.
 
@@ -113,7 +169,7 @@ Google Cloud Pub/Sub is a powerful messaging service that enables scalable, reli
 <!-- TOC --><a name="kafka"></a>
 # Kafka
 
-<!-- TOC --><a name="introduction-3"></a>
+<!-- TOC --><a name="introduction"></a>
 ## Introduction
 Apache Kafka is a distributed streaming platform designed to handle high volumes of data in real-time. Originally developed by LinkedIn, Kafka is now an open-source project maintained by the Apache Software Foundation. It is widely used for building real-time data pipelines and streaming applications. Kafka's ability to handle large-scale data streams with low latency makes it a popular choice for modern data architectures.
 
@@ -137,7 +193,7 @@ Offset: A unique identifier for each record within a partition. Consumers track 
 Zookeeper: Kafka uses Zookeeper for managing and coordinating brokers. It helps in maintaining the cluster state, configuration, and synchronization.
 
 
-<!-- TOC --><a name="architecture-4"></a>
+<!-- TOC --><a name="architecture-1"></a>
 ## Architecture
 Kafka's architecture is designed for high throughput, scalability, and fault tolerance:
 
@@ -150,7 +206,7 @@ Consumers read messages from partitions.
 Zookeeper manages the cluster metadata and broker coordination.
 
 
-<!-- TOC --><a name="key-features-15"></a>
+<!-- TOC --><a name="key-features"></a>
 ## Key Features
 Scalability: Kafka can handle millions of messages per second and can be scaled horizontally by adding more brokers.
 
@@ -165,7 +221,7 @@ High Throughput: Kafka can handle high volumes of data, making it ideal for big 
 Extensibility: Kafka integrates well with other data systems like Hadoop, Spark, and Storm through its Connect API.
 
 
-<!-- TOC --><a name="use-cases-4"></a>
+<!-- TOC --><a name="use-cases-1"></a>
 ## Use Cases
 Real-Time Analytics: Kafka is used to process and analyze data in real-time, enabling businesses to make timely decisions.
 
@@ -223,7 +279,7 @@ Implementing Apache Kafka, a distributed streaming platform, can be complex and 
 * Data Retention and Compaction: Deciding on the right data retention policies and understanding log compaction for key-based data can be complex but is crucial for managing disk space and ensuring data is available as long as needed.
 * Addressing these issues often requires a combination of deep technical knowledge, careful planning, and the use of additional tools and best practices.
 
-<!-- TOC --><a name="best-practices-1"></a>
+<!-- TOC --><a name="best-practices"></a>
 ## Best Practices
 Partitioning: Properly partition topics to distribute load and enable parallel processing.
 
@@ -236,18 +292,18 @@ Security: Implement security measures such as SSL/TLS encryption, SASL authentic
 Optimization: Tune Kafka configurations like batch size, linger time, and buffer memory to optimize performance.
 
 
-<!-- TOC --><a name="conclusion-8"></a>
+<!-- TOC --><a name="conclusion-1"></a>
 ## Conclusion
 Apache Kafka is a powerful and versatile distributed streaming platform that addresses the challenges of handling high-volume, real-time data streams. Its robust architecture, scalability, and low latency make it an essential component in modern data-driven applications. By understanding its core concepts, features, and best practices, organizations can leverage Kafka to build efficient and reliable data pipelines and streaming applications.
 
 
 <!-- TOC --><a name="kafka-connect"></a>
 # Kafka Connect
-<!-- TOC --><a name="introduction-4"></a>
+<!-- TOC --><a name="introduction-1"></a>
 ## Introduction
 Kafka Connect is a tool for scalably and reliably streaming data between Apache Kafka and other systems. It simplifies the process of integrating Kafka with various data sources and sinks, such as databases, cloud services, and file systems. Kafka Connect is part of the Apache Kafka ecosystem and is designed to be extensible, scalable, and fault-tolerant.
 
-<!-- TOC --><a name="key-concepts-2"></a>
+<!-- TOC --><a name="key-concepts-1"></a>
 ## Key Concepts
 Connectors:
 
@@ -275,7 +331,7 @@ Transforms:
 
 Transforms allow for simple modifications to the data as it passes through Kafka Connect. Examples include filtering, renaming fields, and masking sensitive information.
 
-<!-- TOC --><a name="architecture-5"></a>
+<!-- TOC --><a name="architecture-2"></a>
 ## Architecture
 Connector Plugins:
 
@@ -306,7 +362,7 @@ Task Configuration:
 
 Tasks inherit their configuration from the connector, but can also have task-specific settings. This allows for fine-tuning of performance and behavior.
 
-<!-- TOC --><a name="use-cases-5"></a>
+<!-- TOC --><a name="use-cases-2"></a>
 ## Use Cases
 Data Integration:
 
@@ -324,7 +380,7 @@ Data Migration:
 
 Kafka Connect can be used to migrate data between different systems, such as moving data from an on-premises database to a cloud-based data lake.
 
-<!-- TOC --><a name="best-practices-2"></a>
+<!-- TOC --><a name="best-practices-1"></a>
 ## Best Practices
 Scalability:
 
@@ -346,16 +402,16 @@ Performance Tuning:
 
 Tune Kafka Connect performance by adjusting settings such as task count, batch size, and poll interval. This helps to optimize throughput and latency.
 
-<!-- TOC --><a name="conclusion-9"></a>
+<!-- TOC --><a name="conclusion-2"></a>
 ## Conclusion
 Kafka Connect is a powerful tool for building scalable and reliable data pipelines with Apache Kafka. Its extensible architecture, rich ecosystem of connectors, and robust error handling make it an essential component of modern data infrastructure. By following best practices and leveraging its advanced features, organizations can achieve seamless data integration and real-time event streaming at scale.
 <!-- TOC --><a name="kafka-streams"></a>
 # Kafka Streams
-<!-- TOC --><a name="overview-3"></a>
+<!-- TOC --><a name="overview-1"></a>
 ## Overview
 Kafka Streams is a client library for building applications and microservices that process and analyze data stored in Apache Kafka. It provides a simple and lightweight API for stream processing, allowing developers to perform real-time data transformations, aggregations, and joins on Kafka topics. Kafka Streams is part of the Apache Kafka ecosystem and is designed to be scalable, fault-tolerant, and easy to integrate with existing Kafka deployments.
 
-<!-- TOC --><a name="key-concepts-3"></a>
+<!-- TOC --><a name="key-concepts-2"></a>
 ## Key Concepts
 1. Stream Processing
 Stream: A continuous, unbounded sequence of data records.
@@ -388,7 +444,7 @@ Window: A time-based boundary for aggregating data. Kafka Streams supports tumbl
 
 Session Windows: Used to group events that are close in time, with a gap of inactivity defining the session boundary.
 
-<!-- TOC --><a name="architecture-6"></a>
+<!-- TOC --><a name="architecture-3"></a>
 ## Architecture
 1. Scalability
 Kafka Streams applications can be scaled horizontally by running multiple instances of the application. Each instance processes a subset of the partitions from the input topics.
@@ -403,7 +459,7 @@ In case of a failure, the application can recover by reading the state from the 
 3. Exactly-Once Semantics
 Kafka Streams supports exactly-once processing semantics, ensuring that each record is processed exactly once, even in the event of failures.
 
-<!-- TOC --><a name="use-cases-6"></a>
+<!-- TOC --><a name="use-cases-3"></a>
 ## Use Cases
 1. Real-Time Data Processing
 Kafka Streams is ideal for real-time data processing scenarios, such as real-time analytics, monitoring, and alerting.
@@ -466,19 +522,19 @@ count: Counts the occurrences of each word and stores the result in a state stor
 
 to: Writes the word counts to an output topic.
 
-<!-- TOC --><a name="conclusion-10"></a>
+<!-- TOC --><a name="conclusion-3"></a>
 ## Conclusion
 Kafka Streams is a powerful and flexible library for building real-time stream processing applications on top of Apache Kafka. Its simple API, scalability, fault tolerance, and support for exactly-once processing make it an excellent choice for a wide range of use cases, from real-time analytics to event-driven microservices. By leveraging Kafka Streams, developers can build robust and scalable stream processing applications that can handle large volumes of data with low latency.
 
-<!-- TOC --><a name="redis"></a>
+<!-- TOC --><a name="rabbitmq"></a>
 # RabbitMQ
 
-<!-- TOC --><a name="overview-6"></a>
+<!-- TOC --><a name="overview-2"></a>
 ## Overview
 RabbitMQ is an open-source message broker that facilitates communication between different components of a distributed system. It implements the Advanced Message Queuing Protocol (AMQP) and provides a robust, scalable, and flexible messaging solution. RabbitMQ is widely used in microservices architectures, cloud-native applications, and other distributed systems to decouple components, ensure reliable message delivery, and enable asynchronous communication.
 
 
-<!-- TOC --><a name="key-concepts-4"></a>
+<!-- TOC --><a name="key-concepts-3"></a>
 ## Key Concepts
 1. Message Broker
 A message broker acts as an intermediary between message producers (publishers) and consumers. It ensures messages are routed, stored, and delivered reliably.
@@ -517,7 +573,7 @@ Topic Exchange: Routes messages based on pattern matching of routing keys.
 Headers Exchange: Routes messages based on header attributes instead of routing keys.
 
 
-<!-- TOC --><a name="architecture-8"></a>
+<!-- TOC --><a name="architecture-4"></a>
 ## Architecture
 1. Basic Workflow
 A producer sends a message to an exchange.
@@ -601,7 +657,7 @@ Performance: While highly performant, it may not be as fast as some in-memory me
 Scalability: Scaling RabbitMQ requires careful planning and configuration.
 
 
-<!-- TOC --><a name="best-practices-5"></a>
+<!-- TOC --><a name="best-practices-2"></a>
 ## Best Practices
 Use Persistent Messages: For critical data, enable message persistence to avoid data loss.
 
@@ -614,21 +670,20 @@ Secure Your Broker: Enable TLS for encrypted communication and use authenticatio
 Plan for High Availability: Use clustering and mirrored queues to ensure fault tolerance.
 
 
-<!-- TOC --><a name="conclusion-13"></a>
+<!-- TOC --><a name="conclusion-4"></a>
 ## Conclusion
 RabbitMQ is a versatile and reliable message broker that plays a critical role in modern distributed systems. Its support for multiple messaging patterns, protocols, and plugins makes it a powerful tool for building scalable and resilient applications. While it requires careful configuration and management, its benefits in terms of decoupling, reliability, and flexibility make it a popular choice for developers and architects.
 
 
 <!-- TOC --><a name="apache-spark"></a>
-<!-- TOC --><a name="rabbitmq"></a>
 # Apache Spark
 
-<!-- TOC --><a name="introduction-5"></a>
+<!-- TOC --><a name="introduction-2"></a>
 ## Introduction
 Apache Spark is an open-source, distributed computing system designed for fast and flexible processing of large-scale data. It provides an interface for programming entire clusters with implicit data parallelism and fault tolerance. Spark is widely used for big data processing, machine learning, and real-time analytics due to its speed, ease of use, and versatility.
 
 
-<!-- TOC --><a name="key-features-18"></a>
+<!-- TOC --><a name="key-features-1"></a>
 ## Key Features
 Speed: Spark achieves high performance through in-memory computing, reducing the need for disk I/O. It can be up to 100x faster than Hadoop MapReduce for certain workloads.
 
@@ -654,7 +709,7 @@ MLlib: A scalable machine learning library that provides common algorithms for c
 GraphX: A graph processing library for creating and manipulating graphs and performing graph-parallel computations.
 
 
-<!-- TOC --><a name="architecture-9"></a>
+<!-- TOC --><a name="architecture-5"></a>
 ## Architecture
 Spark follows a master-slave architecture:
 
@@ -704,7 +759,7 @@ word_counts.saveAsTextFile("hdfs://path/to/output")
 // Stop the SparkContext
 sc.stop()
 
-<!-- TOC --><a name="use-cases-8"></a>
+<!-- TOC --><a name="use-cases-4"></a>
 ## Use Cases
 Batch Processing: Large-scale ETL (Extract, Transform, Load) jobs.
 
@@ -726,7 +781,7 @@ Community Support: Active open-source community and extensive documentation.
 Integration: Works well with Hadoop, Kubernetes, and other big data tools.
 
 
-<!-- TOC --><a name="challenges-1"></a>
+<!-- TOC --><a name="challenges"></a>
 ## Challenges
 Memory Management: In-memory processing can lead to high memory usage.
 
@@ -735,6 +790,6 @@ Complexity: Debugging distributed applications can be challenging.
 Resource Management: Requires careful tuning for optimal performance.
 
 
-<!-- TOC --><a name="conclusion-14"></a>
+<!-- TOC --><a name="conclusion-5"></a>
 ## Conclusion
 Apache Spark is a powerful tool for big data processing, offering speed, flexibility, and a unified engine for various workloads. Its rich ecosystem and active community make it a popular choice for data engineers and scientists. However, effective use of Spark requires a solid understanding of its architecture, RDDs, and performance tuning techniques.

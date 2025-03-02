@@ -1,11 +1,33 @@
+<!-- TOC start -->
+
+- [ElasticSearch](#elasticsearch)
+  - [Overview](#overview)
+  - [Key Features](#key-features)
+  - [Architecture](#architecture)
+  - [Use Cases](#use-cases)
+  - [Performance Considerations](#performance-considerations)
+  - [Conclusion](#conclusion)
+- [OpenSearch](#opensearch)
+  - [Introduction](#introduction)
+  - [Key Features](#key-features-1)
+  - [Architecture](#architecture-1)
+  - [Installation Steps:](#installation-steps)
+  - [Usage and Operations](#usage-and-operations)
+  - [Integration with Other Tools](#integration-with-other-tools)
+  - [Community and Support](#community-and-support)
+  - [Conclusion](#conclusion-1)
+
+<!-- TOC end -->
+
+<!-- TOC --><a name="elasticsearch"></a>
 # ElasticSearch
 
-<!-- TOC --><a name="overview-7"></a>
+<!-- TOC --><a name="overview"></a>
 ## Overview
 Elasticsearch is a distributed, RESTful search and analytics engine capable of addressing a growing number of use cases. It is built on top of Apache Lucene, a high-performance, full-featured text search engine library. Elasticsearch is designed to scale horizontally and is widely used for log analytics, full-text search, security intelligence, business analytics, and operational intelligence.
 
 
-<!-- TOC --><a name="key-features-19"></a>
+<!-- TOC --><a name="key-features"></a>
 ## Key Features
 1. Distributed and Scalable
 Horizontal Scaling: Elasticsearch can scale out by adding more nodes to the cluster, allowing it to handle large volumes of data and high query loads.
@@ -40,7 +62,7 @@ Cluster Health: Elasticsearch continuously monitors the health of the cluster an
 Replication: Replica shards ensure that data is not lost in case of node failures, providing high availability.
 
 
-<!-- TOC --><a name="architecture-10"></a>
+<!-- TOC --><a name="architecture"></a>
 ## Architecture
 1. Cluster
 A cluster is a collection of one or more nodes that together hold the entire data and provide federated indexing and search capabilities across all nodes.
@@ -58,7 +80,7 @@ An index can be divided into multiple shards, which are individual Lucene indice
 A replica is a copy of a shard. Replicas provide redundancy and high availability, ensuring that data is not lost if a node fails.
 
 
-<!-- TOC --><a name="use-cases-9"></a>
+<!-- TOC --><a name="use-cases"></a>
 ## Use Cases
 1. Log and Event Data Analysis
 Elasticsearch is commonly used for log analytics, where it can ingest, store, and analyze large volumes of log data in real-time. Tools like the ELK Stack (Elasticsearch, Logstash, Kibana) are widely used for this purpose.
@@ -108,7 +130,7 @@ Field-Level Security: Implement field-level security to restrict access to sensi
 Audit Trails: Enable audit logging to track and monitor access to the Elasticsearch cluster and its data.
 
 
-<!-- TOC --><a name="conclusion-15"></a>
+<!-- TOC --><a name="conclusion"></a>
 ## Conclusion
 Elasticsearch is a powerful and versatile search and analytics engine that can handle a wide range of use cases, from log analytics to full-text search. Its distributed nature, real-time capabilities, and ease of use make it a popular choice for organizations looking to leverage big data. However, proper configuration, monitoring, and security practices are essential to ensure optimal performance and protect sensitive data.
 
@@ -118,12 +140,12 @@ By understanding the key features, architecture, and best practices outlined in 
 <!-- TOC --><a name="opensearch"></a>
 # OpenSearch
 
-<!-- TOC --><a name="introduction-6"></a>
+<!-- TOC --><a name="introduction"></a>
 ## Introduction
 OpenSearch is an open-source search and analytics suite derived from Elasticsearch 7.10.2 and Kibana 7.10.2. It is designed to provide a scalable, flexible, and community-driven solution for search, analytics, and observability use cases. OpenSearch is maintained by the OpenSearch Project, which is governed by the Amazon Web Services (AWS) and a broader community of contributors.
 
 
-<!-- TOC --><a name="key-features-20"></a>
+<!-- TOC --><a name="key-features-1"></a>
 ## Key Features
 Search and Analytics:
 
@@ -166,7 +188,7 @@ Open-source with an active community.
 Regular updates and contributions from a wide range of developers.
 
 
-<!-- TOC --><a name="architecture-11"></a>
+<!-- TOC --><a name="architecture-1"></a>
 ## Architecture
 OpenSearch is built on a distributed architecture that includes the following key components:
 
@@ -295,9 +317,8 @@ Open-source contributions are welcome via GitHub.
 Guidelines and contribution policies are available for new contributors.
 
 
-<!-- TOC --><a name="conclusion-16"></a>
+<!-- TOC --><a name="conclusion-1"></a>
 ## Conclusion
 OpenSearch is a powerful, open-source search and analytics suite that offers a wide range of features for modern data-driven applications. Its scalable architecture, robust security features, and active community make it a compelling choice for organizations looking to implement search and observability solutions. With continuous improvements and contributions from the community, OpenSearch is poised to remain a key player in the search and analytics space.
 
 
-<!-- TOC --><a name="google-kubernetes-engine-gke"></a>

@@ -1,11 +1,41 @@
+<!-- TOC start -->
+
+- [Apache ZooKeeper](#apache-zookeeper)
+  - [Overview](#overview)
+  - [Key Features](#key-features)
+  - [Architecture](#architecture)
+  - [Use Cases](#use-cases)
+  - [Conclusion](#conclusion)
+- [Consensus Algorithms](#consensus-algorithms)
+  - [Raft](#raft)
+    - [Introduction](#introduction)
+    - [Key Concepts](#key-concepts)
+    - [Raft Components](#raft-components)
+    - [Raft Algorithm Phases](#raft-algorithm-phases)
+    - [Safety and Fault Tolerance](#safety-and-fault-tolerance)
+    - [Use Cases](#use-cases-1)
+    - [Conclusion](#conclusion-1)
+  - [Paxos](#paxos)
+    - [Introduction](#introduction-1)
+    - [Problem Statement: Distributed Consensus](#problem-statement-distributed-consensus)
+    - [Key Components of Paxos](#key-components-of-paxos)
+    - [Paxos Algorithm Phases](#paxos-algorithm-phases)
+    - [Key Properties of Paxos](#key-properties-of-paxos)
+    - [Fault Tolerance:](#fault-tolerance)
+    - [Applications of Paxos](#applications-of-paxos)
+    - [Conclusion](#conclusion-2)
+
+<!-- TOC end -->
+
+<!-- TOC --><a name="apache-zookeeper"></a>
 # Apache ZooKeeper
 
-<!-- TOC --><a name="overview-21"></a>
+<!-- TOC --><a name="overview"></a>
 ## Overview
 Apache ZooKeeper is a distributed coordination service designed to manage and synchronize large distributed systems. It provides a centralized service for maintaining configuration information, naming, providing distributed synchronization, and offering group services. ZooKeeper is widely used in distributed applications like Apache Hadoop, Apache Kafka, and Apache HBase.
 
 
-<!-- TOC --><a name="key-features-35"></a>
+<!-- TOC --><a name="key-features"></a>
 ## Key Features
 Centralized Configuration Management: ZooKeeper allows distributed systems to store and manage configuration data centrally, ensuring consistency across all nodes.
 
@@ -20,7 +50,7 @@ High Availability: ZooKeeper itself is designed to be highly available, with a q
 Atomic Broadcast: ZooKeeper uses an atomic broadcast protocol to ensure that updates are propagated consistently across all servers.
 
 
-<!-- TOC --><a name="architecture-22"></a>
+<!-- TOC --><a name="architecture"></a>
 ## Architecture
 ZooKeeper operates on a client-server model where clients connect to servers to read and write data. The servers form an ensemble, and data is replicated across all servers in the ensemble.
 
@@ -40,7 +70,7 @@ Persistent Znodes: These znodes persist even after the client that created them 
 Ephemeral Znodes: These znodes are automatically deleted when the client that created them disconnects.
 
 
-<!-- TOC --><a name="use-cases-27"></a>
+<!-- TOC --><a name="use-cases"></a>
 ## Use Cases
 Configuration Management: Centralized storage for configuration data that needs to be consistent across all nodes in a distributed system.
 
@@ -149,7 +179,7 @@ public class LeaderElection implements Watcher {
 }
 
 
-<!-- TOC --><a name="conclusion-36"></a>
+<!-- TOC --><a name="conclusion"></a>
 ## Conclusion
 Apache ZooKeeper is a robust and reliable distributed coordination service that simplifies the development of distributed systems. Its ability to provide centralized configuration management, distributed synchronization, and leader election makes it an indispensable tool for building scalable and resilient distributed applications. By leveraging ZooKeeper, developers can focus on the core logic of their applications while relying on ZooKeeper to handle the complexities of distributed coordination.
 
@@ -158,11 +188,11 @@ Apache ZooKeeper is a robust and reliable distributed coordination service that 
 # Consensus Algorithms
 <!-- TOC --><a name="raft"></a>
 ## Raft
-<!-- TOC --><a name="introduction-11"></a>
+<!-- TOC --><a name="introduction"></a>
 ### Introduction
 The Raft consensus algorithm is a distributed consensus protocol designed to be easy to understand and implement. It was introduced by Diego Ongaro and John Ousterhout in their 2014 paper, "In Search of an Understandable Consensus Algorithm". Raft is widely used in distributed systems to ensure consistency across multiple servers, even in the presence of failures. This writeup provides a technical overview of Raft, its key components, and how it achieves consensus in distributed systems.
 
-<!-- TOC --><a name="key-concepts-6"></a>
+<!-- TOC --><a name="key-concepts"></a>
 ### Key Concepts
 1. Consensus in Distributed Systems
 Consensus is the process of agreeing on a single value or state among multiple nodes in a distributed system.
@@ -245,7 +275,7 @@ Strong Consistency: Raft ensures strong consistency and fault tolerance.
 
 Modularity: Raft separates leader election, log replication, and safety into distinct components, making it easier to reason about.
 
-<!-- TOC --><a name="use-cases-28"></a>
+<!-- TOC --><a name="use-cases-1"></a>
 ### Use Cases
 Raft is used in various distributed systems, including:
 
@@ -255,13 +285,13 @@ Consul: A service mesh and distributed system for service discovery and configur
 
 CockroachDB: A distributed SQL database.
 
-<!-- TOC --><a name="conclusion-37"></a>
+<!-- TOC --><a name="conclusion-1"></a>
 ### Conclusion
 Raft is a robust and understandable consensus algorithm that has become a popular choice for building distributed systems. Its clear separation of concerns, strong safety guarantees, and ease of implementation make it an excellent choice for ensuring consistency and fault tolerance in distributed environments. By leveraging leader election and log replication, Raft provides a reliable foundation for building scalable and 
 resilient systems.
 <!-- TOC --><a name="paxos"></a>
 ## Paxos
-<!-- TOC --><a name="introduction-12"></a>
+<!-- TOC --><a name="introduction-1"></a>
 ### Introduction
 The Paxos consensus algorithm is a fundamental protocol in distributed systems, designed to achieve consensus among a set of nodes in the presence of failures. It was introduced by Leslie Lamport in 1989 and later published in a more accessible form in 1998. Paxos is widely used in distributed systems to ensure that a group of nodes can agree on a single value or a sequence of values, even in the face of network delays, partitions, and node failures.
 
@@ -333,7 +363,7 @@ Liveness:
 
 Paxos guarantees progress as long as a majority of nodes are operational and can communicate.
 
-<!-- TOC --><a name="fault-tolerance-2"></a>
+<!-- TOC --><a name="fault-tolerance"></a>
 ### Fault Tolerance:
 
 Paxos can tolerate up to f failures in a system of 2f + 1 nodes.
@@ -362,7 +392,6 @@ Coordination services: Apache ZooKeeper, etcd.
 
 Blockchain systems: Some consensus protocols are inspired by Paxos.
 
-<!-- TOC --><a name="conclusion-38"></a>
+<!-- TOC --><a name="conclusion-2"></a>
 ### Conclusion
 The Paxos algorithm is a cornerstone of distributed systems, providing a robust and fault-tolerant mechanism for achieving consensus. Despite its complexity, Paxos has proven to be a versatile and reliable solution for a wide range of applications. Understanding Paxos is essential for designing and implementing distributed systems that require strong consistency and fault tolerance.
-<!-- TOC --><a name="multi-threading"></a>

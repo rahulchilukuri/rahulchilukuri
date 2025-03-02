@@ -1,11 +1,35 @@
+<!-- TOC start -->
+
+- [Network and Application Protocols in the OSI Model](#network-and-application-protocols-in-the-osi-model)
+  - [TCP (Transmission Control Protocol)](#tcp-transmission-control-protocol)
+    - [Overview:](#overview)
+    - [Key Features:](#key-features)
+    - [HTTP Versions](#http-versions)
+      - [HTTP/0.9](#http09)
+      - [HTTP/1.0](#http10)
+      - [HTTP/1.1](#http11)
+      - [HTTP/2](#http2)
+      - [HTTP/3](#http3)
+  - [UDP (User Datagram Protocol)](#udp-user-datagram-protocol)
+  - [TLS (Transport Layer Security)](#tls-transport-layer-security)
+  - [Sockets](#sockets)
+  - [WebSockets](#websockets)
+  - [Server-Sent Events (SSE)](#server-sent-events-sse)
+  - [Network Layer (Layer 3)](#network-layer-layer-3)
+  - [Application Layer (Layer 7)](#application-layer-layer-7)
+
+<!-- TOC end -->
+
+<!-- TOC --><a name="network-and-application-protocols-in-the-osi-model"></a>
 # Network and Application Protocols in the OSI Model
 The Open Systems Interconnection (OSI) model is a conceptual framework used to understand and implement standard protocols in network communications. It divides the network communication process into seven layers, each with specific functions and protocols. This writeup focuses on the Network and Application layers, their roles, and the protocols associated with them.
 
+<!-- TOC --><a name="tcp-transmission-control-protocol"></a>
 ## TCP (Transmission Control Protocol)
-Overview:
+### Overview:
 TCP is a connection-oriented protocol that ensures reliable, ordered, and error-checked delivery of data between applications over a network. It is one of the core protocols of the Internet Protocol (IP) suite.
 
-Key Features:
+### Key Features:
 Reliability: TCP guarantees that data sent from one end is delivered correctly and in order to the other end. It uses acknowledgments (ACKs) and retransmissions to ensure data integrity.
 
 Connection-Oriented: A connection is established between the sender and receiver before data transfer begins (via the three-way handshake).
@@ -28,6 +52,122 @@ Higher overhead due to connection setup, acknowledgments, and retransmissions.
 
 Slower than UDP for real-time applications.
 
+<!-- TOC --><a name="http-versions"></a>
+### HTTP Versions
+Introduction
+The Hypertext Transfer Protocol (HTTP) is the foundation of data communication on the World Wide Web. Since its inception, HTTP has undergone several revisions, each aimed at improving performance, security, and functionality. This writeup provides an overview of the major versions of HTTP, highlighting their key features, differences, and the evolution of the protocol.
+
+#### HTTP/0.9
+Release Year: 1991
+
+Key Features:
+
+Simple and minimalistic.
+
+Only supported GET requests.
+
+No headers, status codes, or error handling.
+
+Responses were purely HTML.
+
+Limitations:
+
+Extremely limited functionality.
+
+No support for multimedia or other content types.
+
+#### HTTP/1.0
+Release Year: 1996 (RFC 1945)
+
+Key Features:
+
+Introduced headers for both requests and responses.
+
+Supported multiple HTTP methods (GET, POST, HEAD).
+
+Added status codes to indicate the result of the request.
+
+Supported different content types (MIME types).
+
+Introduced versioning in the protocol.
+
+Limitations:
+
+Each request required a new TCP connection, leading to high latency.
+
+No persistent connections or pipelining.
+
+#### HTTP/1.1
+Release Year: 1997 (RFC 2068), revised in 1999 (RFC 2616)
+
+Key Features:
+
+Persistent connections by default, reducing latency.
+
+Introduced chunked transfer encoding for streaming data.
+
+Added support for caching mechanisms (e.g., ETag, Cache-Control).
+
+Host header required, enabling virtual hosting.
+
+Pipelining allowed multiple requests to be sent without waiting for responses.
+
+Limitations:
+
+Head-of-line blocking in pipelining.
+
+Increasing complexity in managing connections and headers.
+
+Limited performance for modern web applications.
+
+#### HTTP/2
+Release Year: 2015 (RFC 7540)
+
+Key Features:
+
+Binary protocol instead of text-based, improving efficiency.
+
+Multiplexing allows multiple requests and responses simultaneously over a single connection.
+
+Header compression using HPACK reduces overhead.
+
+Server push enables servers to send resources proactively.
+
+Stream prioritization allows better resource allocation.
+
+Limitations:
+
+Complexity in implementation.
+
+Still relies on TCP, which can cause head-of-line blocking at the transport layer.
+
+#### HTTP/3
+Release Year: 2022 (RFC 9114)
+
+Key Features:
+
+Uses QUIC (Quick UDP Internet Connections) as the transport layer protocol instead of TCP.
+
+Eliminates head-of-line blocking by using independent streams.
+
+Built-in encryption (TLS 1.3) by default.
+
+Faster connection establishment and improved performance over unreliable networks.
+
+Better handling of network changes (e.g., switching from Wi-Fi to mobile data).
+
+Limitations:
+
+Requires adoption of QUIC, which is still in progress.
+
+Increased complexity in deployment and debugging.
+
+![alt text](image.png)
+
+Conclusion
+The evolution of HTTP reflects the growing demands of the web, from simple document retrieval to complex, dynamic applications. Each version has introduced significant improvements in performance, security, and functionality. HTTP/3, with its use of QUIC, represents a major shift in how data is transmitted, promising faster and more reliable web experiences. As the internet continues to evolve, so too will the protocols that underpin it, ensuring that HTTP remains a robust and scalable foundation for the web.
+
+<!-- TOC --><a name="udp-user-datagram-protocol"></a>
 ## UDP (User Datagram Protocol)
 Overview:
 UDP is a connectionless protocol that provides a lightweight, low-latency method for sending datagrams between applications. Unlike TCP, it does not guarantee reliability or ordering.
@@ -55,6 +195,7 @@ Lack of reliability and ordering.
 
 No built-in congestion control.
 
+<!-- TOC --><a name="tls-transport-layer-security"></a>
 ## TLS (Transport Layer Security)
 Overview:
 TLS is a cryptographic protocol designed to provide secure communication over a computer network. It ensures confidentiality, integrity, and authentication of data transmitted between applications.
@@ -82,6 +223,7 @@ Adds latency due to the handshake and encryption/decryption processes.
 
 Requires certificate management and infrastructure.
 
+<!-- TOC --><a name="sockets"></a>
 ## Sockets
 Overview:
 A socket is an endpoint for communication between two machines over a network. It provides an interface for applications to send and receive data using protocols like TCP or UDP.
@@ -162,6 +304,7 @@ Sockets provide the foundational API for network communication using TCP, UDP, a
 
 Understanding these protocols and their interactions is essential for designing and implementing efficient, secure, and scalable networked applications.
 
+<!-- TOC --><a name="websockets"></a>
 ## WebSockets
 Introduction
 WebSockets is a communication protocol that provides full-duplex communication channels over a single TCP connection. It is designed to be implemented in web browsers and web servers but can be used by any client or server application. The WebSocket protocol enables interaction between a web browser (or other client application) and a web server with lower overheads, facilitating real-time data transfer.
@@ -263,6 +406,7 @@ ws.onclose = function() {
 Conclusion
 WebSockets provide a powerful mechanism for real-time, full-duplex communication between clients and servers. While they offer significant advantages in terms of latency and efficiency, they also come with their own set of challenges and considerations. Proper implementation and security practices are essential to leverage the full potential of WebSockets in modern web applications.
 
+<!-- TOC --><a name="server-sent-events-sse"></a>
 ## Server-Sent Events (SSE)
 Introduction
 Server-Sent Events (SSE) is a standard allowing servers to push real-time updates to clients over HTTP. Unlike WebSockets, which facilitate two-way communication, SSE is a one-way communication channel from the server to the client. It is particularly useful for applications requiring real-time updates, such as live notifications, stock tickers, or social media feeds.
@@ -385,6 +529,7 @@ Use Case	Real-time updates	Interactive applications
 Conclusion
 Server-Sent Events (SSE) is a lightweight and efficient technology for delivering real-time updates from the server to the client. It is ideal for use cases requiring one-way communication, such as live notifications or feeds. While it has limitations, such as lack of bidirectional communication, its simplicity and compatibility make it a valuable tool in the real-time web development toolkit. For more complex applications requiring two-way communication, WebSockets or other technologies may be more appropriate.
 
+<!-- TOC --><a name="network-layer-layer-3"></a>
 ## Network Layer (Layer 3)
 Role of the Network Layer
 The Network Layer is responsible for:
@@ -426,6 +571,7 @@ BGP (Border Gateway Protocol):
 
 Manages routing between autonomous systems (AS) on the internet.
 
+<!-- TOC --><a name="application-layer-layer-7"></a>
 ## Application Layer (Layer 7)
 Role of the Application Layer
 The Application Layer is the topmost layer of the OSI model and is responsible for:

@@ -1,3 +1,34 @@
+<!-- TOC start -->
+
+- [AWS](#aws)
+  - [Amazon EC2 (Elastic Compute Cloud)](#amazon-ec2-elastic-compute-cloud)
+    - [Key Features:](#key-features)
+  - [Amazon EBS (Elastic Block Store)](#amazon-ebs-elastic-block-store)
+    - [Key Features:](#key-features-1)
+  - [Amazon EFS (Elastic File System)](#amazon-efs-elastic-file-system)
+    - [Key Features:](#key-features-2)
+  - [Amazon VPC (Virtual Private Cloud)](#amazon-vpc-virtual-private-cloud)
+    - [Key Features:](#key-features-3)
+  - [Elastic Load Balancers (ELB)](#elastic-load-balancers-elb)
+    - [Key Features:](#key-features-4)
+  - [AWS IAM (Identity and Access Management)](#aws-iam-identity-and-access-management)
+    - [Key Features:](#key-features-5)
+  - [Amazon Route 53](#amazon-route-53)
+    - [Key Features:](#key-features-6)
+  - [Amazon RDS (Relational Database Service)](#amazon-rds-relational-database-service)
+    - [Key Features:](#key-features-7)
+  - [Amazon SQS (Simple Queue Service)](#amazon-sqs-simple-queue-service)
+    - [Key Features:](#key-features-8)
+  - [Amazon SNS (Simple Notification Service)](#amazon-sns-simple-notification-service)
+    - [Key Features:](#key-features-9)
+  - [Amazon S3 (Simple Storage Service)](#amazon-s3-simple-storage-service)
+    - [Key Features:](#key-features-10)
+  - [AWS Lambda](#aws-lambda)
+    - [Key Features:](#key-features-11)
+  - [Conclusion](#conclusion)
+
+<!-- TOC end -->
+
 <!-- TOC --><a name="aws"></a>
 # AWS
 Amazon Web Services (AWS) offers a comprehensive suite of cloud computing services that enable businesses to build, deploy, and manage applications with flexibility, scalability, and reliability. Below is a technical overview of key AWS products:
@@ -209,6 +240,6 @@ Supports multiple programming languages (e.g., Python, Node.js, Java).
 Integration with API Gateway, S3, DynamoDB, and more.
 
 
-<!-- TOC --><a name="conclusion-1"></a>
+<!-- TOC --><a name="conclusion"></a>
 ## Conclusion
 AWS provides a robust ecosystem of services that cater to diverse computing, storage, networking, and application development needs. By leveraging these services, organizations can build scalable, secure, and cost-effective solutions in the cloud. Each service is designed to integrate seamlessly with others, enabling end-to-end solutions for modern applications.

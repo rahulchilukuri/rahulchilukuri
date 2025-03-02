@@ -1,7 +1,17 @@
+<!-- TOC start -->
+
+- [Basic OOP Concepts](#basic-oop-concepts)
+- [What are the four pillars of OOP?](#what-are-the-four-pillars-of-oop)
+- [Qs](#qs)
+
+<!-- TOC end -->
+
+<!-- TOC --><a name="basic-oop-concepts"></a>
 # Basic OOP Concepts
 What is Object-Oriented Programming (OOP)?
 OOP is a programming paradigm that organizes software design around objects and classes, focusing on encapsulation, inheritance, polymorphism, and abstraction.
 
+<!-- TOC --><a name="what-are-the-four-pillars-of-oop"></a>
 # What are the four pillars of OOP?
 
 Encapsulation: Bundling data and methods that operate on the data within a single unit (class).
@@ -12,6 +22,7 @@ Polymorphism: The ability of an object to take many forms (e.g., method overridi
 
 Abstraction: Hiding complex implementation details and showing only essential features.
 
+<!-- TOC --><a name="qs"></a>
 # Qs
 What is a class?
 A class is a blueprint or template for creating objects. It defines properties (attributes) and behaviors (methods) that the objects will have.
