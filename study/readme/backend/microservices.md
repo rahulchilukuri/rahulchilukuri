@@ -2,6 +2,8 @@
 
 - [Microservices](#microservices)
   - [Introduction](#introduction)
+  - [Best Practices](#best-practices)
+  - [What to use when](#what-to-use-when)
   - [Conclusion](#conclusion)
   - [Top Microservices Design Patterns](#top-microservices-design-patterns)
   - [REST](#rest)
@@ -14,7 +16,8 @@
   - [Architecture of an API Gateway](#architecture-of-an-api-gateway)
   - [Benefits of Using an API Gateway](#benefits-of-using-an-api-gateway)
   - [Use Cases](#use-cases)
-  - [Best Practices](#best-practices)
+  - [Best Practices](#best-practices-1)
+- [Guide](#guide)
   - [Conclusion](#conclusion-1)
 - [NGINX](#nginx)
   - [rview](#rview)
@@ -54,6 +57,91 @@
 <!-- TOC --><a name="introduction"></a>
 ## Introduction
 Microservices architecture has become a cornerstone of modern software development, particularly in the realm of distributed computing. By decomposing applications into smaller, independently deployable services, microservices enable organizations to achieve greater scalability, flexibility, and resilience. However, designing and operating microservices in a distributed environment introduces a unique set of challenges. This tech writeup explores key microservices patterns that address these challenges, ensuring robust, scalable, and maintainable systems.
+
+## Best Practices
+1. 𝐑𝐞𝐬𝐢𝐥𝐢𝐞𝐧𝐜𝐞 𝐚𝐧𝐝 𝐅𝐚𝐮𝐥𝐭 𝐓𝐨𝐥𝐞𝐫𝐚𝐧𝐜𝐞
+Design for failure. Services must handle unexpected scenarios gracefully.
+Use techniques like retries, fallbacks, and circuit breakers to ensure reliability.
+
+ 2. 𝐎𝐫𝐜𝐡𝐞𝐬𝐭𝐫𝐚𝐭𝐢𝐨𝐧
+Decouple services with orchestrators like Kubernetes.
+Let them handle communication and workflow logic to reduce chaos.
+
+ 3. 𝐀𝐏𝐈 𝐆𝐚𝐭𝐞𝐰𝐚𝐲
+Use an API Gateway for a single entry point.
+It simplifies authentication, routing, and request throttling.
+
+ 4. 𝐃𝐨𝐜𝐤𝐞𝐫
+Containerize your services with Docker for consistency across environments.
+This simplifies deployment and scalability.
+
+ 5. 𝐃𝐚𝐭𝐚𝐛𝐚𝐬𝐞 𝐏𝐞𝐫 𝐒𝐞𝐫𝐯𝐢𝐜𝐞
+Each service should own its database.
+Avoid tightly coupling services by sharing databases.
+
+ 6. 𝐎𝐛𝐬𝐞𝐫𝐯𝐚𝐛𝐢𝐥𝐢𝐭𝐲
+Monitor everything: logs, metrics, traces.
+Tools like Prometheus, Grafana, and Jaeger are your best friends.
+
+ 7. 𝐄𝐯𝐞𝐧𝐭-𝐃𝐫𝐢𝐯𝐞𝐧 𝐀𝐫𝐜𝐡𝐢𝐭𝐞𝐜𝐭𝐮𝐫𝐞
+Use event-driven systems for asynchronous communication.
+It improves scalability and reduces tight coupling.
+
+ 8. 𝐒𝐢𝐧𝐠𝐥𝐞 𝐑𝐞𝐬𝐩𝐨𝐧𝐬𝐢𝐛𝐢𝐥𝐢𝐭𝐲
+Every service should do one thing and do it well.
+Avoid bloated services trying to handle too many responsibilities.
+
+ 9. 𝐒𝐭𝐚𝐭𝐞𝐥𝐞𝐬𝐬 𝐒𝐞𝐫𝐯𝐢𝐜𝐞𝐬
+Stateless is seamless. Store user state in a centralized database or cache.
+This ensures horizontal scaling is straightforward.
+
+ 10. 𝐒𝐜𝐚𝐥𝐚𝐛𝐢𝐥𝐢𝐭𝐲
+Design services to scale independently.
+Leverage load balancers and autoscaling for peak performance.
+
+ 11. 𝐂𝐈/𝐂𝐃
+Automate builds, tests, and deployments with CI/CD pipelines.
+Continuous delivery is the heart of agile microservices.
+
+ 12. 𝐒𝐞𝐜𝐮𝐫𝐢𝐭𝐲
+Secure communication with HTTPS and OAuth2.
+Validate inputs, and keep secrets in safe storage solutions like AWS Secrets Manager.
+
+## What to use when
+𝗛𝗲𝗿𝗲’𝘀 𝗮 𝗯𝗿𝗲𝗮𝗸𝗱𝗼𝘄𝗻 𝗼𝗳 𝘀𝗶𝘅 𝗲𝘀𝘀𝗲𝗻𝘁𝗶𝗮𝗹 𝗔𝗣𝗜 𝗮𝗿𝗰𝗵𝗶𝘁𝗲𝗰𝘁𝘂𝗿𝗲𝘀 𝗲𝘃𝗲𝗿𝘆 𝘁𝗲𝗰𝗵 𝗽𝗿𝗼𝗳𝗲𝘀𝘀𝗶𝗼𝗻𝗮𝗹 𝘀𝗵𝗼𝘂𝗹𝗱 𝗸𝗻𝗼𝘄: 
+
+ 𝗥𝗘𝗦𝗧 (𝗥𝗲𝗽𝗿𝗲𝘀𝗲𝗻𝘁𝗮𝘁𝗶𝗼𝗻𝗮𝗹 𝗦𝘁𝗮𝘁𝗲 𝗧𝗿𝗮𝗻𝘀𝗳𝗲𝗿) 
+• 𝗕𝗲𝘀𝘁 𝗳𝗼𝗿: Simple, resource-oriented applications 
+• 𝗪𝗵𝘆? REST is stateless and follows standard HTTP methods (GET, POST, PUT, DELETE), making it easy to implement, scalable, and perfect for CRUD operations in web apps. 
+ 
+𝗚𝗿𝗮𝗽𝗵𝗤𝗟 
+• 𝗕𝗲𝘀𝘁 𝗳𝗼𝗿: Flexible, efficient data fetching 
+• 𝗪𝗵𝘆? Unlike REST, GraphQL allows clients to request only the needed data—no more, no less. This minimizes over-fetching and under-fetching, making it a game-changer for front-end-heavy applications with complex data structures. 
+ 
+𝗦𝗢𝗔𝗣 (𝗦𝗶𝗺𝗽𝗹𝗲 𝗢𝗯𝗷𝗲𝗰𝘁 𝗔𝗰𝗰𝗲𝘀𝘀 𝗣𝗿𝗼𝘁𝗼𝗰𝗼𝗹) 
+• 𝗕𝗲𝘀𝘁 𝗳𝗼𝗿: High-security, enterprise applications 
+• 𝗪𝗵𝘆? SOAP is XML-based and built with strict security standards, making it ideal for industries like banking and healthcare that require ACID compliance and robust security protocols. 
+
+𝗴𝗥𝗣𝗖 (𝗚𝗼𝗼𝗴𝗹𝗲 𝗥𝗲𝗺𝗼𝘁𝗲 𝗣𝗿𝗼𝗰𝗲𝗱𝘂𝗿𝗲 𝗖𝗮𝗹𝗹) 
+• 𝗕𝗲𝘀𝘁 𝗳𝗼𝗿: High-performance, low-latency distributed systems 
+• 𝗪𝗵𝘆? gRPC leverages HTTP/2 and protocol buffers (Protobufs) for faster data transmission. It supports bidirectional streaming, making it perfect for microservices and mobile applications where speed is critical. 
+
+𝗪𝗲𝗯𝗦𝗼𝗰𝗸𝗲𝘁𝘀 
+• 𝗕𝗲𝘀𝘁 𝗳𝗼𝗿: Real-time applications (gaming, chat, live notifications) 
+• 𝗪𝗵𝘆? WebSockets enable persistent, two-way communication between client and server, ensuring ultra-low latency for high-interactivity scenarios. 
+ 
+𝗠𝗤𝗧𝗧 (𝗠𝗲𝘀𝘀𝗮𝗴𝗲 𝗤𝘂𝗲𝘂𝗶𝗻𝗴 𝗧𝗲𝗹𝗲𝗺𝗲𝘁𝗿𝘆 𝗧𝗿𝗮𝗻𝘀𝗽𝗼𝗿𝘁) 
+• 𝗕𝗲𝘀𝘁 𝗳𝗼𝗿: IoT applications 
+• 𝗪𝗵𝘆? MQTT is a lightweight protocol designed for low-bandwidth, power-constrained devices. Its publish-subscribe model makes it perfect for sensor-based systems where efficiency is key. 
+
+𝗪𝗵𝗲𝗻 𝘁𝗼 𝗨𝘀𝗲 𝗪𝗵𝗮𝘁? 
+REST → General-purpose web applications 
+GraphQL → Dynamic data queries and front-end flexibility 
+SOAP → Secure, enterprise-grade systems 
+gRPC → Microservices & real-time communication 
+WebSockets → Live, interactive applications 
+MQTT → IoT and connected devices 
+
 
 <!-- TOC --><a name="conclusion"></a>
 ## Conclusion
@@ -998,6 +1086,54 @@ Document APIs
 Provide clear and comprehensive documentation for developers.
 
 Use tools like Swagger or OpenAPI to generate documentation.
+
+# Guide
+Here is a guide into building a powerful and secure API Gateway from scratch. Let's go!
+
+1. Understanding the Role of an API Gateway
+- Request Routing: Direct client requests to the appropriate microservice.
+- Authentication & Authorization: Centralize and enforce security protocols.
+- Rate Limiting & Throttling: Prevent abuse and ensure fair usage.
+- Caching: Improve performance by caching frequent requests.
+- Logging & Monitoring: Track API usage and diagnose issues.
+- Load Balancing: Distribute traffic efficiently across multiple instances.
+
+2. Choosing the Right Technology Stack
+Depending on your needs, there are multiple frameworks and tools to build an API Gateway:
+- Open Source Options: Kong, Tyk, and Traefik.
+- Cloud-Native Solutions: AWS API Gateway, Azure API Management, GCP API Gateway.
+- Custom Build: Using frameworks like Express.js (Node.js), Spring Cloud Gateway (Java), or Nginx/OpenResty (Lua).
+
+
+3. Designing Your API Gateway Architecture
+- Endpoints Design: Clear and consistent URL patterns.
+- Authentication Layer: Use OAuth 2.0, JWTs, or API keys.
+- Service Discovery: Dynamic routing to services based on registry (e.g., Consul or Eureka).
+- Error Handling: Consistent error messages and status codes.
+- Circuit Breakers & Retries: Avoid cascading failures with resilience patterns.
+
+4. Security Best Practices
+- TLS Encryption: Use HTTPS everywhere.
+- IP Whitelisting & Blacklisting: Control access at the gateway level.
+- Request Validation: Use schema validation (e.g., JSON Schema) to reject malformed requests.
+- Rate Limiting & Quotas: Protect your services from DDoS attacks.
+
+5. Implementing Observability
+- Logging: Centralized log management (e.g., ELK Stack, Fluentd).
+- Tracing: Distributed tracing with tools like OpenTelemetry or Jaeger.
+- Metrics: Monitor latency, error rates, and traffic volume with Prometheus and Grafana.
+
+6. Deploying & Scaling
+- Containerization: Use Docker for consistent environments.
+- Orchestration: Deploy with Kubernetes for scaling and failover.
+- CI/CD Pipelines: Automate testing and deployment.
+
+7. Continuous Improvement
+- Regular Security Audits: Check for vulnerabilities.
+- Performance Tuning: Optimize caching strategies and connection pooling.
+- API Versioning: Manage changes without breaking clients.
+
+By following this guide, you’ll have a scalable, secure, and performant API Gateway that not only streamlines your microservices communication but also fortifies your application against common threats and performance bottlenecks.
 
 
 <!-- TOC --><a name="conclusion-1"></a>

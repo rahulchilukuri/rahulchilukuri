@@ -13,14 +13,17 @@ OOP is a programming paradigm that organizes software design around objects and 
 
 <!-- TOC --><a name="what-are-the-four-pillars-of-oop"></a>
 # What are the four pillars of OOP?
+• Abstraction:
+Hides complex implementation details, exposing only essential features. Example: A Vehicle class with an abstract stop() method.
 
-Encapsulation: Bundling data and methods that operate on the data within a single unit (class).
+• Encapsulation:
+Bundles data (fields) and methods within a class, controlling access using access modifiers. Example: Private fields accessed via public getter and setter methods.
 
-Inheritance: A mechanism where a new class derives properties and behaviors from an existing class.
+• Inheritance:
+Enables a new class (child) to inherit attributes and methods from an existing class (parent), promoting code reuse. Example: A Car class inheriting from a Vehicle class.
 
-Polymorphism: The ability of an object to take many forms (e.g., method overriding and overloading).
-
-Abstraction: Hiding complex implementation details and showing only essential features.
+• Polymorphism:
+Allows methods to behave differently based on the object it operates on. Allows for interchangeability of types that share an inheritance chain.
 
 <!-- TOC --><a name="qs"></a>
 # Qs
