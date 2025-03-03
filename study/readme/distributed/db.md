@@ -54,6 +54,7 @@
   - [Performance Bottlenecks](#performance-bottlenecks)
   - [Lack of Documentation and Expertise](#lack-of-documentation-and-expertise)
   - [Best Practices](#best-practices)
+  - [Top Issues](#top-issues)
   - [Conclusion](#conclusion-1)
 - [Memcached](#memcached)
   - [Overview](#overview-1)
@@ -119,6 +120,7 @@
   - [Time Synchronization](#time-synchronization)
   - [Anti-Patterns](#anti-patterns)
   - [Best Practices to Mitigate Issues:](#best-practices-to-mitigate-issues)
+  - [Top Issues](#top-issues-1)
   - [Conclusion](#conclusion-8)
 - [Spanner](#spanner)
   - [Key Features](#key-features-7)
@@ -498,6 +500,144 @@ Security: Implement authentication, ACLs, and encryption to secure Redis instanc
 
 Monitoring: Regularly monitor performance metrics and set up alerts for critical events.
 
+## Top Issues
+1. Memory Management and Fragmentation
+Issue: Redis stores data in memory, which can lead to high memory usage. Over time, memory fragmentation can occur, reducing available memory.
+
+Mitigation:
+
+Use maxmemory to set a memory limit and configure an eviction policy (maxmemory-policy) like allkeys-lru or volatile-lru.
+
+Monitor memory usage with INFO memory and use MEMORY PURGE (Redis 4.0+) to reduce fragmentation.
+
+Consider partitioning data across multiple Redis instances (sharding).
+
+2. Persistence and Data Loss
+Issue: Redis offers two persistence options—RDB (snapshots) and AOF (append-only file). Misconfiguration can lead to data loss during crashes.
+
+Mitigation:
+
+Use both RDB and AOF for better durability. RDB provides periodic snapshots, while AOF logs every write operation.
+
+Configure appendfsync to everysec (default) for a balance between performance and durability.
+
+Test backup and restore procedures regularly.
+
+3. Performance Degradation
+Issue: Performance can degrade due to long-running commands, large datasets, or inefficient queries.
+
+Mitigation:
+
+Avoid blocking commands like KEYS * (use SCAN instead).
+
+Use pipelining to reduce round-trip times for multiple commands.
+
+Monitor slow logs with SLOWLOG to identify and optimize slow queries.
+
+Scale horizontally using Redis Cluster or proxy-based solutions like Twemproxy.
+
+4. High Availability and Failover
+Issue: Single-node Redis is a single point of failure. Failover mechanisms are critical for production systems.
+
+Mitigation:
+
+Use Redis Sentinel for automatic failover and monitoring.
+
+Deploy Redis Cluster for distributed data and high availability.
+
+Ensure proper configuration of quorum and failover timeouts in Sentinel.
+
+5. Security Risks
+Issue: Redis is often targeted by attackers due to its default lack of authentication and exposure to the internet.
+
+Mitigation:
+
+Enable authentication using requirepass.
+
+Bind Redis to specific IPs (bind directive) and avoid exposing it to the public internet.
+
+Use firewalls and VPNs to restrict access.
+
+Regularly update Redis to the latest stable version to patch vulnerabilities.
+
+6. Replication Lag
+Issue: In a master-replica setup, replicas can lag behind the master, leading to stale data.
+
+Mitigation:
+
+Monitor replication lag using INFO replication.
+
+Optimize network performance between master and replicas.
+
+Use WAIT command (Redis 3.0+) to ensure writes are propagated to a specified number of replicas.
+
+7. Scaling Challenges
+Issue: As data grows, scaling Redis can become complex, especially with a single instance.
+
+Mitigation:
+
+Use Redis Cluster for automatic sharding and scaling.
+
+Consider partitioning data across multiple Redis instances.
+
+Use a managed Redis service (e.g., AWS ElastiCache, Google Cloud Memorystore) for automated scaling.
+
+8. CPU and Network Bottlenecks
+Issue: High CPU usage or network latency can impact Redis performance.
+
+Mitigation:
+
+Monitor CPU usage with INFO CPU.
+
+Optimize client connections and use connection pooling.
+
+Use a dedicated network for Redis traffic in cloud environments.
+
+9. Key Expiration and Eviction
+Issue: Misconfigured key expiration or eviction policies can lead to unexpected data loss or memory issues.
+
+Mitigation:
+
+Use EXPIRE or TTL to set appropriate expiration times for keys.
+
+Choose the right eviction policy (maxmemory-policy) based on your use case.
+
+Monitor key expiration patterns to avoid sudden spikes in evictions.
+
+10. Monitoring and Alerting
+Issue: Lack of monitoring can lead to undetected issues, such as memory leaks or performance degradation.
+
+Mitigation:
+
+Use tools like redis-cli, INFO, and MONITOR for real-time monitoring.
+
+Integrate with monitoring systems like Prometheus, Grafana, or Datadog.
+
+Set up alerts for critical metrics (e.g., memory usage, replication lag, CPU usage).
+
+11. Upgrades and Compatibility
+Issue: Upgrading Redis versions can introduce compatibility issues or require configuration changes.
+
+Mitigation:
+
+Test upgrades in a staging environment before applying them to production.
+
+Review release notes for breaking changes.
+
+Use rolling upgrades for Redis Cluster to minimize downtime.
+
+12. Client-Side Issues
+Issue: Poorly designed client applications can overload Redis with excessive connections or inefficient queries.
+
+Mitigation:
+
+Use connection pooling to limit the number of client connections.
+
+Optimize client-side code to reduce the number of round-trips to Redis.
+
+Implement retry logic for transient failures.
+
+By addressing these issues proactively and implementing the suggested mitigations, you can ensure that your Redis deployment remains stable, performant, and secure in production environments. Regular monitoring, testing, and tuning are key to maintaining a healthy Redis setup.
 
 <!-- TOC --><a name="conclusion-1"></a>
 ## Conclusion
@@ -1640,6 +1780,210 @@ Monitor and tune performance continuously.
 Follow Cassandra’s official documentation and community best practices.
 
 By addressing these challenges proactively, developers can build and maintain a stable and high-performing Cassandra cluster.
+
+## Top Issues
+1. Performance Degradation
+Symptoms: Slow read/write operations, high latency, or timeouts.
+
+Causes:
+
+Improper schema design (e.g., wide partitions, excessive denormalization).
+
+High compaction pressure or too many tombstones.
+
+Inefficient queries (e.g., ALLOW FILTERING, large IN clauses).
+
+Resource bottlenecks (CPU, disk I/O, memory, or network).
+
+Mitigation:
+
+Optimize schema design to avoid wide partitions and excessive denormalization.
+
+Use appropriate compaction strategies (e.g., TimeWindowCompactionStrategy for time-series data).
+
+Avoid ALLOW FILTERING and optimize queries.
+
+Monitor and scale resources (e.g., add nodes, upgrade hardware).
+
+Use caching (e.g., row cache or key cache) for frequently accessed data.
+
+2. Node Failures and Unavailability
+Symptoms: Nodes going down, cluster instability, or data unavailability.
+
+Causes:
+
+Hardware failures (disk, network, or memory).
+
+High load or resource exhaustion.
+
+Network partitioning or misconfiguration.
+
+Mitigation:
+
+Ensure proper replication factor (RF) and consistency level (CL) to maintain availability.
+
+Use rack-aware or datacenter-aware replication to tolerate failures.
+
+Monitor node health and set up alerts for critical metrics (e.g., disk usage, CPU, memory).
+
+Automate failure detection and recovery using tools like nodetool repair.
+
+3. Data Consistency Issues
+Symptoms: Stale or inconsistent data, read repairs taking too long.
+
+Causes:
+
+Network partitions or node failures.
+
+Incorrect consistency level settings (e.g., QUORUM or LOCAL_QUORUM not used).
+
+Clock drift or timestamp issues.
+
+Mitigation:
+
+Use appropriate consistency levels (e.g., QUORUM for writes and reads).
+
+Enable hinted handoff and read repair to handle temporary failures.
+
+Use NTP (Network Time Protocol) to synchronize clocks across nodes.
+
+Regularly run nodetool repair to ensure data consistency.
+
+4. Compaction and Tombstone Issues
+Symptoms: High disk usage, slow performance, or query timeouts.
+
+Causes:
+
+Accumulation of tombstones (deleted data) due to frequent deletes or TTLs.
+
+Inefficient compaction strategy or backlog.
+
+Mitigation:
+
+Use TimeWindowCompactionStrategy (TWCS) for time-series data.
+
+Adjust gc_grace_seconds to control tombstone retention.
+
+Regularly run nodetool compact to reclaim space.
+
+Monitor and tune compaction throughput.
+
+5. Disk Space Issues
+Symptoms: Nodes running out of disk space, leading to failures.
+
+Causes:
+
+Data growth exceeding disk capacity.
+
+Inefficient compaction or tombstone accumulation.
+
+Mitigation:
+
+Monitor disk usage and plan for capacity expansion.
+
+Use tiered storage or cloud-based solutions for scalability.
+
+Regularly clean up unused data and optimize TTLs.
+
+Use nodetool cleanup to remove unnecessary data.
+
+6. Network Latency and Partitioning
+Symptoms: High latency, timeouts, or cluster instability.
+
+Causes:
+
+Network congestion or misconfiguration.
+
+Cross-datacenter replication delays.
+
+Mitigation:
+
+Optimize network configuration (e.g., increase bandwidth, reduce latency).
+
+Use LOCAL_QUORUM for reads/writes within a datacenter.
+
+Monitor network metrics and set up alerts for anomalies.
+
+7. Schema Design Issues
+Symptoms: Poor query performance, high read/write latency.
+
+Causes:
+
+Wide partitions or excessive denormalization.
+
+Lack of secondary indexes or materialized views.
+
+Mitigation:
+
+Design schemas based on query patterns (query-first design).
+
+Avoid wide partitions by using bucketing or partitioning strategies.
+
+Use secondary indexes or materialized views sparingly.
+
+8. Backup and Recovery Challenges
+Symptoms: Data loss or inability to restore data.
+
+Causes:
+
+Lack of regular backups.
+
+Inefficient backup strategies.
+
+Mitigation:
+
+Use nodetool snapshot for regular backups.
+
+Store backups in a secure, offsite location.
+
+Test recovery procedures regularly.
+
+9. Security Issues
+Symptoms: Unauthorized access or data breaches.
+
+Causes:
+
+Lack of authentication or encryption.
+
+Misconfigured firewall or network settings.
+
+Mitigation:
+
+Enable authentication and authorization (e.g., using PasswordAuthenticator).
+
+Use SSL/TLS for encryption in transit.
+
+Restrict access using firewalls and VPNs.
+
+10. Operational Complexity
+Symptoms: Difficulty in managing and scaling the cluster.
+
+Causes:
+
+Lack of automation or monitoring.
+
+Insufficient expertise in Cassandra operations.
+
+Mitigation:
+
+Use tools like Cassandra Reaper for automated repairs.
+
+Implement monitoring tools (e.g., Prometheus, Grafana) for real-time insights.
+
+Train staff or hire experts for Cassandra administration.
+
+Best Practices for Cassandra in Production:
+Monitor Key Metrics: Track CPU, memory, disk I/O, and network usage.
+
+Regular Maintenance: Run nodetool repair, cleanup, and compaction regularly.
+
+Capacity Planning: Plan for future growth and scale proactively.
+
+Automate Operations: Use tools for backups, repairs, and monitoring.
+
+Test Thoroughly: Simulate failures and test recovery procedures.
+
+By addressing these issues proactively and following best practices, you can ensure a stable and high-performing Cassandra deployment in production.
 
 <!-- TOC --><a name="conclusion-8"></a>
 ## Conclusion

@@ -15,6 +15,7 @@
   - [Usage and Operations](#usage-and-operations)
   - [Integration with Other Tools](#integration-with-other-tools)
   - [Community and Support](#community-and-support)
+  - [Top Issues](#top-issues)
   - [Conclusion](#conclusion-1)
 
 <!-- TOC end -->
@@ -316,6 +317,233 @@ Open-source contributions are welcome via GitHub.
 
 Guidelines and contribution policies are available for new contributors.
 
+## Top Issues
+1. Cluster Performance Degradation
+Symptoms: Slow query responses, high CPU/memory usage, or timeouts.
+
+Causes:
+
+Heavy indexing or search load.
+
+Inefficient queries or aggregations.
+
+Resource contention (CPU, memory, disk I/O).
+
+Poorly configured shard allocation.
+
+Mitigation:
+
+Optimize queries and aggregations (e.g., avoid wildcard queries, use filters instead of queries where possible).
+
+Scale horizontally by adding more nodes to the cluster.
+
+Use dedicated nodes for specific roles (e.g., master, data, ingest).
+
+Monitor and adjust shard allocation to avoid overloading specific nodes.
+
+Use index lifecycle management (ILM) to manage indices and reduce shard count.
+
+2. High Disk Usage
+Symptoms: Cluster health turns yellow or red due to low disk space.
+
+Causes:
+
+Large indices with too many shards.
+
+Unmanaged log or time-series data.
+
+Replica shards consuming additional disk space.
+
+Mitigation:
+
+Implement index lifecycle management (ILM) to roll over and delete old indices.
+
+Reduce the number of replicas (if acceptable for fault tolerance).
+
+Use data compression techniques (e.g., best_compression for indices).
+
+Regularly monitor disk usage and set up alerts for thresholds.
+
+3. Shard Allocation Issues
+Symptoms: Unassigned shards, cluster health yellow/red, or uneven shard distribution.
+
+Causes:
+
+Node failures or network issues.
+
+Incorrect shard allocation settings.
+
+Too many small shards.
+
+Mitigation:
+
+Ensure proper cluster settings for shard allocation (e.g., cluster.routing.allocation.enable).
+
+Avoid creating too many small shards by sizing indices appropriately.
+
+Use the _cat/shards API to identify and resolve unassigned shards.
+
+Rebalance shards across nodes using the _cluster/reroute API if necessary.
+
+4. JVM Memory Pressure
+Symptoms: Frequent garbage collection (GC), out-of-memory errors, or node crashes.
+
+Causes:
+
+Insufficient heap size allocation.
+
+Large aggregations or complex queries consuming too much memory.
+
+Too many shards or indices.
+
+Mitigation:
+
+Set the JVM heap size to 50% of available RAM (not exceeding 32 GB due to JVM limitations).
+
+Optimize queries to reduce memory usage (e.g., use smaller size parameters, avoid deep pagination).
+
+Monitor and reduce the number of shards per node.
+
+Use circuit breakers to prevent out-of-memory errors.
+
+5. Network and Discovery Issues
+Symptoms: Nodes unable to join the cluster, split-brain scenarios, or network partitions.
+
+Causes:
+
+Misconfigured discovery and cluster formation settings.
+
+Network latency or instability.
+
+Firewall or security group restrictions.
+
+Mitigation:
+
+Configure discovery.seed_hosts and cluster.initial_master_nodes correctly.
+
+Use a dedicated network for cluster communication.
+
+Ensure proper firewall rules and security group settings.
+
+Use a quorum-based master election strategy to avoid split-brain scenarios.
+
+6. Data Consistency and Durability
+Symptoms: Data loss or inconsistencies after node failures.
+
+Causes:
+
+Insufficient replica shards.
+
+Delayed or failed write operations.
+
+Mitigation:
+
+Ensure at least one replica shard for each primary shard.
+
+Use refresh_interval and flush settings to balance performance and durability.
+
+Regularly back up indices using snapshots.
+
+7. Security and Access Control
+Symptoms: Unauthorized access, data breaches, or misconfigured permissions.
+
+Causes:
+
+Lack of authentication or encryption.
+
+Overly permissive access controls.
+
+Mitigation:
+
+Enable security plugins (e.g., OpenSearch Security) for authentication and authorization.
+
+Use TLS/SSL for encrypted communication.
+
+Implement role-based access control (RBAC) to restrict access to sensitive data.
+
+Regularly audit and update security configurations.
+
+8. Indexing Bottlenecks
+Symptoms: Slow indexing rates or rejected write requests.
+
+Causes:
+
+High volume of concurrent write requests.
+
+Resource contention (CPU, memory, disk I/O).
+
+Inefficient mappings or analyzers.
+
+Mitigation:
+
+Use bulk API for batch indexing.
+
+Optimize mappings (e.g., avoid dynamic mappings where possible).
+
+Scale indexing nodes or use dedicated ingest nodes.
+
+Monitor and tune thread pools for indexing operations.
+
+9. Snapshot and Backup Failures
+Symptoms: Failed or incomplete snapshots.
+
+Causes:
+
+Network issues between OpenSearch and the snapshot repository.
+
+Insufficient storage in the snapshot repository.
+
+Concurrent snapshot operations.
+
+Mitigation:
+
+Ensure reliable and sufficient storage for snapshots.
+
+Use a dedicated repository for snapshots (e.g., S3, HDFS).
+
+Schedule snapshots during low-activity periods.
+
+Monitor snapshot progress and retry failed operations.
+
+10. Upgrade and Compatibility Issues
+Symptoms: Cluster instability or failures after upgrading OpenSearch.
+
+Causes:
+
+Incompatible plugins or configurations.
+
+Breaking changes in the new version.
+
+Mitigation:
+
+Test upgrades in a staging environment before applying them to production.
+
+Review release notes and migration guides for breaking changes.
+
+Ensure all plugins are compatible with the new version.
+
+Take a snapshot before upgrading.
+
+General Best Practices for Mitigation:
+Monitoring and Alerts:
+
+Use OpenSearch Dashboards, Prometheus, or other monitoring tools to track cluster health, resource usage, and performance metrics.
+
+Set up alerts for critical thresholds (e.g., disk usage, JVM memory pressure).
+
+Capacity Planning:
+
+Regularly assess cluster capacity and plan for scaling (horizontal or vertical).
+
+Use performance testing to identify bottlenecks.
+
+Documentation and Training:
+
+Maintain up-to-date documentation for cluster configurations and operational procedures.
+
+Train team members on OpenSearch best practices and troubleshooting.
+
+By proactively addressing these issues and implementing the suggested mitigation strategies, you can ensure a stable and performant OpenSearch cluster in production environments.
 
 <!-- TOC --><a name="conclusion-1"></a>
 ## Conclusion
