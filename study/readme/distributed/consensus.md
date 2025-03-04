@@ -15,6 +15,13 @@
     - [Safety and Fault Tolerance](#safety-and-fault-tolerance)
     - [Use Cases](#use-cases-1)
     - [Conclusion](#conclusion-1)
+  - [KRaft](#kraft)
+    - [How Does KRaft Work?](#how-does-kraft-work)
+    - [Key Differences from ZooKeeper Mode](#key-differences-from-zookeeper-mode)
+    - [Benefits of KRaft](#benefits-of-kraft)
+    - [Challenges and Trade-Offs](#challenges-and-trade-offs)
+    - [Use Cases for KRaft](#use-cases-for-kraft)
+    - [Conclusion](#conclusion-2)
   - [Paxos](#paxos)
     - [Introduction](#introduction-1)
     - [Problem Statement: Distributed Consensus](#problem-statement-distributed-consensus)
@@ -23,7 +30,7 @@
     - [Key Properties of Paxos](#key-properties-of-paxos)
     - [Fault Tolerance:](#fault-tolerance)
     - [Applications of Paxos](#applications-of-paxos)
-    - [Conclusion](#conclusion-2)
+    - [Conclusion](#conclusion-3)
 
 <!-- TOC end -->
 
@@ -289,6 +296,86 @@ CockroachDB: A distributed SQL database.
 ### Conclusion
 Raft is a robust and understandable consensus algorithm that has become a popular choice for building distributed systems. Its clear separation of concerns, strong safety guarantees, and ease of implementation make it an excellent choice for ensuring consistency and fault tolerance in distributed environments. By leveraging leader election and log replication, Raft provides a reliable foundation for building scalable and 
 resilient systems.
+
+## KRaft
+KRaft is a Raft-based consensus mechanism built directly into Kafka to manage its metadata (e.g., topic configurations, partition assignments, broker states) without relying on an external system like ZooKeeper. Raft is a distributed consensus algorithm designed to be easier to understand and implement compared to older protocols like Paxos. In KRaft mode, Kafka brokers themselves form a quorum to maintain and replicate metadata, effectively making Kafka a self-contained system.
+
+Before KRaft, Kafka used ZooKeeper to handle critical tasks like leader election, broker registration, and metadata storage. While ZooKeeper worked well, it added an external dependency that increased operational overhead and limited Kafka’s scalability for certain use cases. KRaft eliminates this by embedding the consensus logic into Kafka’s core.
+
+### How Does KRaft Work?
+KRaft replaces ZooKeeper with a metadata quorum—a subset of Kafka brokers (or dedicated controller nodes) that run the Raft protocol to manage the cluster’s metadata log. Here’s a breakdown of the mechanics:
+
+Metadata Log
+Instead of storing metadata in ZooKeeper’s hierarchical key-value store, KRaft maintains it in a replicated log (similar to Kafka’s own topic-partition logs). This log is called the metadata topic and is managed by the quorum of controllers.
+Controller Quorum
+A small group of nodes (typically 3 or 5) acts as controllers. These nodes run the Raft protocol to:
+Elect a leader (the active controller).
+Replicate metadata changes across the quorum.
+Ensure consistency and fault tolerance. The leader handles all metadata updates (e.g., creating a topic, reassigning partitions), while followers replicate the log.
+Event-Driven Updates
+Metadata changes (e.g., a new partition or broker joining) are written as events to the metadata log. Brokers subscribe to this log and apply updates locally, keeping the cluster in sync.
+Single Controller Model
+In ZooKeeper mode, Kafka had a single controller broker responsible for managing partitions and reacting to cluster changes, with ZooKeeper ensuring its election. KRaft formalizes this into a quorum-based system, where the active controller is the Raft leader, elected by the quorum.
+
+### Key Differences from ZooKeeper Mode
+Aspect	ZooKeeper Mode	KRaft Mode
+Dependency	External ZooKeeper cluster	No external dependency
+Metadata Storage	ZooKeeper’s key-value store	Kafka’s internal metadata log
+Consensus	ZooKeeper’s Zab protocol	Raft protocol
+Controllers	Single controller, elected via ZooKeeper	Quorum of controllers, Raft-elected
+Scalability Limit	ZooKeeper caps at ~100K partitions	Potentially millions of partitions
+
+### Benefits of KRaft
+Simplified Operations
+Eliminating ZooKeeper reduces the number of systems to deploy, monitor, and maintain. You no longer need to tune ZooKeeper’s JVM, manage its disk usage, or worry about network latency between Kafka and ZooKeeper.
+Improved Scalability
+ZooKeeper struggles with large clusters (e.g., tens of thousands of partitions) due to its in-memory design and write bottlenecks. KRaft leverages Kafka’s log-based architecture, which is better suited to handle massive metadata loads—potentially supporting millions of partitions.
+Faster Controller Failover
+In ZooKeeper mode, controller failover could take seconds due to ZooKeeper coordination. KRaft’s Raft quorum enables quicker leader election (often sub-second), reducing downtime during failures.
+Unified Architecture
+KRaft aligns Kafka’s metadata management with its data plane (topics and partitions), using the same log replication principles. This makes Kafka more internally consistent and easier to reason about.
+Smaller Footprint
+For small deployments (e.g., single-node setups), KRaft allows Kafka to run without spinning up a separate ZooKeeper instance, lowering resource overhead.
+
+### Challenges and Trade-Offs
+Maturity
+While KRaft is production-ready as of Kafka 3.3, it’s newer than ZooKeeper mode, which has been battle-tested for over a decade. Early adopters may encounter edge cases or bugs, though the Kafka community is actively stabilizing it.
+Quorum Configuration
+You must configure the controller quorum carefully. A minimum of 3 nodes is recommended for fault tolerance (to tolerate 1 failure), and quorum size impacts latency and availability. Misconfigurations could lead to cluster instability.
+Migration Complexity
+Moving from ZooKeeper to KRaft requires a full cluster migration, as the two modes aren’t interoperable. This involves exporting metadata, reconfiguring brokers, and redeploying—a non-trivial process for large, live systems.
+Loss of ZooKeeper Tools
+ZooKeeper mode allowed operators to use ZooKeeper’s CLI and APIs for debugging or manual intervention. KRaft lacks equivalent tools (yet), relying on Kafka’s own observability mechanisms.
+
+### Use Cases for KRaft
+Large-Scale Clusters: Environments with thousands of partitions or brokers benefit from KRaft’s scalability.
+Simplified Deployments: Small teams or edge deployments (e.g., IoT) can avoid ZooKeeper’s overhead.
+Cloud-Native Systems: KRaft aligns with containerized, self-contained architectures like Kubernetes.
+How to Enable KRaft
+To run Kafka in KRaft mode:
+
+Set process.roles in the broker config to broker, controller, or both (for co-located setups).
+Define the controller.quorum.voters property with a list of controller node IDs (e.g., 1@host1:port,2@host2:port,3@host3:port).
+Remove ZooKeeper-related configs (e.g., zookeeper.connect).
+Start the cluster and initialize the metadata log.
+Example config snippet:
+
+text
+
+Collapse
+
+Wrap
+
+Copy
+process.roles=broker,controller
+node.id=1
+controller.quorum.voters=1@localhost:9093,2@localhost:9094,3@localhost:9095
+Current Status (March 2025)
+As of Kafka 3.7 (the latest stable release by late 2024), KRaft is considered production-ready for most workloads. ZooKeeper mode is still supported but marked for deprecation in a future major release (likely Kafka 4.0). The Kafka community continues to refine KRaft, adding features like better monitoring tools and improved migration paths.
+
+### Conclusion
+KRaft represents a bold step forward for Kafka, shedding its ZooKeeper baggage to become a more streamlined, scalable platform. It’s not a drop-in replacement for every use case—ZooKeeper mode remains viable for mature, stable deployments—but it’s the future of Kafka’s architecture. For new clusters or those pushing scalability limits, KRaft is worth adopting, provided you’re ready to navigate its (shrinking) growing pains.
+
 <!-- TOC --><a name="paxos"></a>
 ## Paxos
 <!-- TOC --><a name="introduction-1"></a>
