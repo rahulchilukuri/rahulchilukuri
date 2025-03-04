@@ -1,41 +1,46 @@
 <!-- TOC start -->
 
 - [CrowdStrike vs. Secureworks Comparison](#crowdstrike-vs-secureworks-comparison)
-   * [CrowdStrike Falcon Next-Gen SIEM](#crowdstrike-falcon-next-gen-siem)
-      + [Key Features:](#key-features)
-      + [How It Works:](#how-it-works)
-      + [Benefits:](#benefits)
-      + [Limitations:](#limitations)
-   * [Secureworks Taegis XDR](#secureworks-taegis-xdr)
-      + [Key Features:](#key-features-1)
-      + [How It Works:](#how-it-works-1)
-      + [Benefits:](#benefits-1)
-      + [Limitations:](#limitations-1)
-      + [Comparison of Key Metrics](#comparison-of-key-metrics)
-   * [Key Questions for Hiring Manager](#key-questions-for-hiring-manager)
-      + [Integration and Ecosystem:](#integration-and-ecosystem)
-      + [Detection Speed and Coverage:](#detection-speed-and-coverage)
-      + [Compliance and Reporting:](#compliance-and-reporting)
-      + [Future-Proofing:](#future-proofing)
-      + [Customer Feedback:](#customer-feedback)
-      + [Deployment and Management:](#deployment-and-management)
-      + [Vendor Lock-In:](#vendor-lock-in)
+  - [CrowdStrike Falcon Next-Gen SIEM](#crowdstrike-falcon-next-gen-siem)
+    - [Key Features:](#key-features)
+    - [How It Works:](#how-it-works)
+    - [Benefits:](#benefits)
+    - [Limitations:](#limitations)
+  - [Secureworks Taegis XDR](#secureworks-taegis-xdr)
+    - [Key Features:](#key-features-1)
+    - [How It Works:](#how-it-works-1)
+    - [Benefits:](#benefits-1)
+    - [Limitations:](#limitations-1)
+    - [Comparison of Key Metrics](#comparison-of-key-metrics)
+  - [Key Questions for Hiring Manager](#key-questions-for-hiring-manager)
+    - [Role Expectations and Responsibilities](#role-expectations-and-responsibilities)
+    - [Team Dynamics and Collaboration](#team-dynamics-and-collaboration)
+    - [Company Culture and Values](#company-culture-and-values)
+    - [Technology and Tools](#technology-and-tools)
+    - [Career Growth and Development](#career-growth-and-development)
+    - [Innovation and Industry Leadership](#innovation-and-industry-leadership)
+    - [Customer Impact and Success](#customer-impact-and-success)
+    - [Challenges and Opportunities](#challenges-and-opportunities)
+    - [Work-Life Balance and Remote Work](#work-life-balance-and-remote-work)
+    - [Hiring Manager’s Experience and Perspective](#hiring-managers-experience-and-perspective)
+    - [Next Steps and Expectations](#next-steps-and-expectations)
+    - [Competitive Landscape](#competitive-landscape)
 - [Queries](#queries)
-   * [Integration and Ecosystem](#integration-and-ecosystem-1)
-   * [AI and Automation](#ai-and-automation)
-   * [Detection Speed and Accuracy](#detection-speed-and-accuracy)
-   * [Scalability and Performance](#scalability-and-performance)
-   * [Cost and Pricing Model](#cost-and-pricing-model)
-   * [Compliance and Reporting](#compliance-and-reporting-1)
-   * [Deployment and Management](#deployment-and-management-1)
-   * [Threat Intelligence](#threat-intelligence)
-   * [Managed Services and Support](#managed-services-and-support)
-   * [Comparison with Competitors](#comparison-with-competitors)
-   * [Future-Proofing and Innovation](#future-proofing-and-innovation)
-   * [Customer Success and Case Studies](#customer-success-and-case-studies)
-   * [Vendor Lock-In and Flexibility](#vendor-lock-in-and-flexibility)
-   * [Training and Skill Development](#training-and-skill-development)
-   * [Real-World Performance and Metrics](#real-world-performance-and-metrics)
+  - [Integration and Ecosystem](#integration-and-ecosystem)
+  - [AI and Automation](#ai-and-automation)
+  - [Detection Speed and Accuracy](#detection-speed-and-accuracy)
+  - [Scalability and Performance](#scalability-and-performance)
+  - [Cost and Pricing Model](#cost-and-pricing-model)
+  - [Compliance and Reporting](#compliance-and-reporting)
+  - [Deployment and Management](#deployment-and-management)
+  - [Threat Intelligence](#threat-intelligence)
+  - [Managed Services and Support](#managed-services-and-support)
+  - [Comparison with Competitors](#comparison-with-competitors)
+  - [Future-Proofing and Innovation](#future-proofing-and-innovation)
+  - [Customer Success and Case Studies](#customer-success-and-case-studies)
+  - [Vendor Lock-In and Flexibility](#vendor-lock-in-and-flexibility)
+  - [Training and Skill Development](#training-and-skill-development)
+  - [Real-World Performance and Metrics](#real-world-performance-and-metrics)
 
 <!-- TOC end -->
 
@@ -127,71 +132,175 @@ Slower real-time detection and response compared to CrowdStrike’s AI-native pl
 
 <!-- TOC --><a name="comparison-of-key-metrics"></a>
 ### Comparison of Key Metrics
-Metric	CrowdStrike Falcon Next-Gen SIEM	Secureworks Taegis XDR
-Detection Speed	4 minutes (MITRE), 2m7s breakout response	Minutes (inferred), no exact benchmark
-Detection Coverage	98% (MITRE), endpoint + third-party focus	Broad (endpoint + network), no % cited
-Search Performance	150x faster than legacy SIEMs	Efficient, but not quantified
-False Positives	95% reduction (customer data)	Reduced via tuning, no specific %
-Scalability	Petabyte-scale, 10GB/day free tier	Scalable, less transparent on limits
-Response Time	Seconds to minutes (automation + MDR)	Minutes to hours (SOC + automation)
-SOAR, UEBA, and Threat Detection Comparison
-Capability	CrowdStrike Falcon	Secureworks Taegis
-SOAR	AI-driven, self-managed, 53s response	Managed, SOC-guided, less automation focus
-UEBA	Real-time, endpoint-centric, 95% noise drop	Multi-vector, contextual, human-validated
-Threat Detection	4-min detection, 98% coverage, AI-native	Broad scope, minutes detection, SOC-backed
+![alt text](crwd.png)
 
 <!-- TOC --><a name="key-questions-for-hiring-manager"></a>
 ## Key Questions for Hiring Manager
-<!-- TOC --><a name="integration-and-ecosystem"></a>
-### Integration and Ecosystem:
+<!-- TOC --><a name="role-expectations-and-responsibilities"></a>
+### Role Expectations and Responsibilities
+Objective: Understand the day-to-day responsibilities, key performance indicators (KPIs), and how success is measured in the role.
 
-How does CrowdStrike’s deep integration within its ecosystem compare to Secureworks’ open-ecosystem approach? Which is more suitable for our current infrastructure?
+Sample Questions:
 
-Managed Services vs. Self-Managed:
+Can you describe the day-to-day responsibilities of this role?
 
-Secureworks offers managed services with 24/7 SOC support, while CrowdStrike focuses on self-managed automation. Which approach aligns better with our team’s expertise and resource availability?
+What are the key metrics or KPIs used to measure success in this position?
 
-<!-- TOC --><a name="detection-speed-and-coverage"></a>
-### Detection Speed and Coverage:
+How does this role contribute to CrowdStrike’s overall mission of stopping breaches?
 
-CrowdStrike claims faster detection (e.g., 4 minutes) and higher coverage (98% in MITRE tests). How critical is real-time detection for our organization compared to broader threat visibility?
+Are there any specific challenges or pain points this role is expected to address?
 
-Cost and Scalability:
+<!-- TOC --><a name="team-dynamics-and-collaboration"></a>
+### Team Dynamics and Collaboration
+Objective: Learn about the team structure, collaboration style, and how cross-functional teams work together.
 
-CrowdStrike emphasizes cost savings (up to 80% less than legacy SIEMs) and petabyte-scale scalability. How does Secureworks’ pricing and scalability compare, especially for long-term growth?
+Sample Questions:
 
-Threat Intelligence:
+Can you tell me about the team I’d be working with? What are their roles and expertise?
 
-CrowdStrike leverages AI-driven threat intelligence, while Secureworks relies on human-validated insights. Which approach is more effective for our threat landscape?
+How does this team collaborate with other departments, such as engineering, threat intelligence, or customer success?
 
-<!-- TOC --><a name="compliance-and-reporting"></a>
-### Compliance and Reporting:
+What is the communication style within the team (e.g., agile, structured, informal)?
 
-Both platforms offer compliance support, but CrowdStrike highlights built-in reporting for standards like GDPR and HIPAA. Does Secureworks provide similar capabilities, and how do they compare?
+Are there opportunities to work on cross-functional projects?
 
-<!-- TOC --><a name="future-proofing"></a>
-### Future-Proofing:
+<!-- TOC --><a name="company-culture-and-values"></a>
+### Company Culture and Values
+Objective: Gain insights into CrowdStrike’s culture, values, and how they align with your own.
 
-CrowdStrike positions itself as a modern SIEM replacement, while Secureworks focuses on augmenting existing SIEMs. Which strategy better aligns with our long-term security goals?
+Sample Questions:
 
-<!-- TOC --><a name="customer-feedback"></a>
-### Customer Feedback:
+How would you describe CrowdStrike’s company culture?
 
-CrowdStrike customers report significant reductions in false positives and response times. Are there similar success stories or case studies for Secureworks that we can review?
+What values are most important to CrowdStrike, and how are they reflected in day-to-day operations?
 
-<!-- TOC --><a name="deployment-and-management"></a>
-### Deployment and Management:
+How does CrowdStrike foster diversity, equity, and inclusion within the workplace?
 
-CrowdStrike’s cloud-native architecture is known for rapid deployment. How does Secureworks’ deployment process compare, especially for complex environments?
+Can you share an example of how the company has lived up to its core values in a recent project or initiative?
 
-<!-- TOC --><a name="vendor-lock-in"></a>
-### Vendor Lock-In:
+<!-- TOC --><a name="technology-and-tools"></a>
+### Technology and Tools
+Objective: Understand the tools, technologies, and methodologies used in the role.
 
-CrowdStrike’s platform is tightly integrated, which may lead to vendor lock-in. How does Secureworks’ open-ecosystem approach mitigate this risk?
+Sample Questions:
 
-These notes and questions should help guide a detailed discussion with the hiring manager about the strengths and weaknesses of CrowdStrike and Secureworks, ensuring an informed decision based on organizational needs.
+What tools and technologies does the team primarily use (e.g., Falcon platform, SIEM, SOAR, UEBA)?
 
-<!-- TOC --><a name="queries"></a>
+How does CrowdStrike stay ahead of emerging threats and incorporate new technologies into its solutions?
+
+Are there opportunities to work with AI-driven tools like Charlotte AI or Falcon Fusion SOAR?
+
+How does the team handle continuous learning and upskilling on new technologies?
+
+<!-- TOC --><a name="career-growth-and-development"></a>
+### Career Growth and Development
+Objective: Explore opportunities for professional growth, mentorship, and skill development.
+
+Sample Questions:
+
+What opportunities for career growth and advancement are available at CrowdStrike?
+
+Does CrowdStrike offer mentorship programs or opportunities to work with senior leaders?
+
+How does the company support ongoing learning and development (e.g., training, certifications, conferences)?
+
+Can you share examples of team members who have grown within the company?
+
+<!-- TOC --><a name="innovation-and-industry-leadership"></a>
+### Innovation and Industry Leadership
+Objective: Understand CrowdStrike’s approach to innovation and its position in the cybersecurity industry.
+
+Sample Questions:
+
+How does CrowdStrike maintain its leadership in the cybersecurity space, especially with competitors like Secureworks and Palo Alto Networks?
+
+What are some of the most exciting projects or innovations the team is currently working on?
+
+How does CrowdStrike balance innovation with the need for stability and reliability in its products?
+
+What role does threat intelligence play in driving innovation at CrowdStrike?
+
+<!-- TOC --><a name="customer-impact-and-success"></a>
+### Customer Impact and Success
+Objective: Learn how the role contributes to customer success and the overall impact of CrowdStrike’s solutions.
+
+Sample Questions:
+
+How does this role directly impact CrowdStrike’s customers and their security outcomes?
+
+Can you share an example of how CrowdStrike’s solutions have helped a customer overcome a significant security challenge?
+
+How does the team gather and incorporate customer feedback into product development?
+
+What is CrowdStrike’s approach to ensuring customer satisfaction and retention?
+
+<!-- TOC --><a name="challenges-and-opportunities"></a>
+### Challenges and Opportunities
+Objective: Identify the challenges the team or company is facing and how the role can address them.
+
+Sample Questions:
+
+What are the biggest challenges the team is currently facing?
+
+How does this role help address those challenges?
+
+What opportunities do you see for CrowdStrike to grow or improve in the next 1-2 years?
+
+How does the company stay competitive in a rapidly evolving cybersecurity landscape?
+
+<!-- TOC --><a name="work-life-balance-and-remote-work"></a>
+### Work-Life Balance and Remote Work
+Objective: Understand the company’s approach to work-life balance and remote work policies.
+
+Sample Questions:
+
+How does CrowdStrike support work-life balance for its employees?
+
+Does CrowdStrike offer flexible or remote work options for this role?
+
+How does the company ensure collaboration and team cohesion in a remote or hybrid work environment?
+
+Are there any company-wide initiatives to promote employee well-being?
+
+<!-- TOC --><a name="hiring-managers-experience-and-perspective"></a>
+### Hiring Manager’s Experience and Perspective
+Objective: Gain insights into the hiring manager’s experience and perspective on working at CrowdStrike.
+
+Sample Questions:
+
+What has been your experience working at CrowdStrike, and what do you enjoy most about it?
+
+What excites you most about the future of CrowdStrike?
+
+How would you describe the leadership style within your team or department?
+
+What qualities do you think are most important for someone to succeed in this role?
+
+<!-- TOC --><a name="next-steps-and-expectations"></a>
+### Next Steps and Expectations
+Objective: Clarify the hiring process and next steps.
+
+Sample Questions:
+
+What are the next steps in the hiring process, and what is the expected timeline?
+
+Are there any specific skills or experiences you’re looking for in the ideal candidate?
+
+Is there anything about my background or experience that you’d like me to elaborate on?
+
+Do you have any advice for someone starting in this role at CrowdStrike?
+
+<!-- TOC --><a name="competitive-landscape"></a>
+### Competitive Landscape
+Objective: Understand how CrowdStrike differentiates itself from competitors like Secureworks, Palo Alto Networks, and others.
+
+Sample Questions:
+
+How does CrowdStrike differentiate itself from competitors like Secureworks in terms of technology and customer value?
+
+What do you think sets CrowdStrike apart as an employer compared to other cybersecurity companies?
+
+How does CrowdStrike’s approach to threat detection and response compare to other players in the market?
 # Queries
 <!-- TOC --><a name="integration-and-ecosystem-1"></a>
 ## Integration and Ecosystem
