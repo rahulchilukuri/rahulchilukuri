@@ -1,5 +1,6 @@
 <!-- TOC start -->
 
+- [CrowdStrike](#crowdstrike)
 - [CrowdStrike vs. Secureworks Comparison](#crowdstrike-vs-secureworks-comparison)
   - [CrowdStrike Falcon Next-Gen SIEM](#crowdstrike-falcon-next-gen-siem)
     - [Key Features:](#key-features)
@@ -12,6 +13,23 @@
     - [Benefits:](#benefits-1)
     - [Limitations:](#limitations-1)
     - [Comparison of Key Metrics](#comparison-of-key-metrics)
+  - [HM](#hm)
+    - [Technical Expertise and Problem Solving](#technical-expertise-and-problem-solving)
+      - [Algorithm \& Data Structures:](#algorithm--data-structures)
+      - [System Design:](#system-design)
+      - [Security:](#security)
+      - [Performance and Scalability:](#performance-and-scalability)
+    - [Technical Depth \& Hands-on Experience](#technical-depth--hands-on-experience)
+      - [Programming Languages \& Tools:](#programming-languages--tools)
+      - [Cloud Infrastructure \& DevOps:](#cloud-infrastructure--devops)
+    - [Collaboration \& Leadership](#collaboration--leadership)
+      - [Cross-team Collaboration:](#cross-team-collaboration)
+    - [Behavioral \& Problem-Solving Skills](#behavioral--problem-solving-skills)
+    - [Culture Fit](#culture-fit)
+    - [Knowledge of CrowdStrike Products](#knowledge-of-crowdstrike-products)
+    - [Technical Proficiency:](#technical-proficiency)
+    - [Problem-Solving and Design:](#problem-solving-and-design)
+    - [Company Alignment:](#company-alignment)
   - [Key Questions for Hiring Manager](#key-questions-for-hiring-manager)
     - [Role Expectations and Responsibilities](#role-expectations-and-responsibilities)
     - [Team Dynamics and Collaboration](#team-dynamics-and-collaboration)
@@ -43,6 +61,14 @@
   - [Real-World Performance and Metrics](#real-world-performance-and-metrics)
 
 <!-- TOC end -->
+
+# CrowdStrike
+CrowdStrike's engineering organization is structured to support its diverse range of cybersecurity products and services. Karan Gupta leads the global engineering team, focusing on the AI-native Falcon platform, which encompasses various security domains such as endpoint, identity, cloud security, next-gen SIEM, data protection, exposure management, IT automation, and threat intelligence.
+
+The Falcon platform is designed to protect critical areas of enterprise risk, including endpoints, cloud workloads, identities, and data.
+ This comprehensive approach ensures that CrowdStrike's engineering efforts are aligned with its product offerings, providing robust security solutions to its clients.
+
+While specific details about the internal subdivisions within the engineering department are not publicly disclosed, it is reasonable to infer that the organization is segmented to align with these key product areas, ensuring dedicated focus and expertise in each domain.
 
 <!-- TOC --><a name="crowdstrike-vs-secureworks-comparison"></a>
 # CrowdStrike vs. Secureworks Comparison
@@ -133,6 +159,81 @@ Slower real-time detection and response compared to CrowdStrike’s AI-native pl
 <!-- TOC --><a name="comparison-of-key-metrics"></a>
 ### Comparison of Key Metrics
 ![alt text](crwd.png)
+
+
+## HM
+When preparing for a Senior Software Engineer II interview at CrowdStrike, it's essential to anticipate questions that assess both your technical expertise and your alignment with the company's mission and values. Based on available information, here are some questions you might encounter:
+
+### Technical Expertise and Problem Solving
+#### Algorithm & Data Structures:
+Can you explain how you would design a system to process and store petabytes of data efficiently?
+How do you approach optimizing algorithms for large-scale systems?
+#### System Design:
+Describe a complex system you've designed in the past. What challenges did you face, and how did you address them?
+How would you design a scalable, high-availability microservices architecture for a global security platform?
+#### Security:
+Given CrowdStrike’s focus on cybersecurity, how would you go about detecting and preventing security breaches in a large cloud-based application?
+Can you describe how you would design an authentication system for a multi-cloud application?
+#### Performance and Scalability:
+What are some strategies you've used to ensure your code is scalable and performs well under load?
+How would you approach troubleshooting a performance bottleneck in a distributed system?
+### Technical Depth & Hands-on Experience
+#### Programming Languages & Tools:
+What programming languages do you feel most comfortable with, and how have you applied them in previous roles?
+Have you worked with real-time data processing frameworks? How did you integrate them into your solutions?
+#### Cloud Infrastructure & DevOps:
+What cloud platforms (AWS, Azure, GCP) have you worked with? How would you use them to support a scalable security solution?
+How do you handle CI/CD in a large, distributed environment?
+###  Collaboration & Leadership
+#### Cross-team Collaboration:
+How do you handle working with product managers and other engineering teams to define requirements and deliver features?
+Can you describe a time when you had to collaborate with a non-technical team or customer? How did you communicate technical concepts effectively?
+Mentorship:
+How do you approach mentoring junior engineers? Can you give an example of how you’ve helped someone grow technically?
+How do you ensure code quality and consistency across a large team of engineers?
+### Behavioral & Problem-Solving Skills
+Handling Failure:
+Can you tell me about a time when you faced a major setback in a project? How did you handle it, and what did you learn from it?
+Describe a time when a project didn’t go as planned. How did you get it back on track?
+Conflict Resolution:
+Have you had a disagreement with a colleague over a technical approach? How did you resolve it?
+Decision Making:
+Tell me about a time when you had to make a difficult technical decision. What factors did you consider, and what was the outcome?
+### Culture Fit
+Why CrowdStrike?
+What interests you about CrowdStrike and our mission to protect organizations from cybersecurity threats?
+How do you align your career goals with CrowdStrike’s values and growth trajectory?
+Ownership & Accountability:
+Can you describe a time when you took full ownership of a project or feature? What was the impact, and how did you ensure its success?
+### Knowledge of CrowdStrike Products
+Company Knowledge:
+How familiar are you with CrowdStrike’s Falcon platform and its components?
+What are some of the key challenges CrowdStrike might face in delivering security at scale, and how would you address them?
+
+### Technical Proficiency:
+
+Can you describe your experience with cybersecurity and incident response? 
+What technology stacks have you worked with, and can you give an example of how you’ve used one to solve a complex problem? 
+How would you approach scaling a web application to handle increased traffic and demand? 
+
+### Problem-Solving and Design:
+
+Can you describe a project you managed from start to finish? What was your role, and how did you ensure the project was successful? 
+Can you explain your design process for scaling systems? 
+Leadership and Collaboration:
+
+Can you describe a time when you had to lead a team through a difficult project? What strategies did you use to ensure success? 
+Can you describe a time when you had to work collaboratively on a project? What was your role, and how did you contribute to the team's success? 
+
+### Company Alignment:
+
+Why do you want to work at CrowdStrike? 
+Based on what you know of our company, how do you plan to reach goals with your team? 
+Additionally, it's beneficial to prepare thoughtful questions to ask the hiring manager, such as:
+
+Can you describe the technical job ladder at CrowdStrike and how it relates to the management ladder? 
+What are some projects you're excited about that this role would be involved in?
+
 
 <!-- TOC --><a name="key-questions-for-hiring-manager"></a>
 ## Key Questions for Hiring Manager
