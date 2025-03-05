@@ -13,6 +13,13 @@
     - [Benefits:](#benefits-1)
     - [Limitations:](#limitations-1)
     - [Comparison of Key Metrics](#comparison-of-key-metrics)
+  - [HMQ Specific to Role](#hmq-specific-to-role)
+    - [Technical Expertise](#technical-expertise)
+    - [Problem Solving \& Collaboration](#problem-solving--collaboration)
+    - [Leadership \& Mentoring](#leadership--mentoring)
+    - [Security Focus](#security-focus)
+    - [System Monitoring \& Operations](#system-monitoring--operations)
+    - [Cultural Fit \& Soft Skills](#cultural-fit--soft-skills)
   - [HM](#hm)
     - [Technical Expertise and Problem Solving](#technical-expertise-and-problem-solving)
       - [Algorithm \& Data Structures:](#algorithm--data-structures)
@@ -160,6 +167,58 @@ Slower real-time detection and response compared to CrowdStrike’s AI-native pl
 ### Comparison of Key Metrics
 ![alt text](crwd.png)
 
+<!-- TOC --><a name="hmq-specific-to-role"></a>
+## HMQ Specific to Role
+<!-- TOC --><a name="technical-expertise"></a>
+### Technical Expertise
+Can you describe your experience working with cloud-native microservices?
+
+Follow-up: How have you used cloud platforms like AWS to deploy these services at scale?
+You’ll be designing systems to handle trillions of events per day. What strategies have you used to optimize high-volume, high-performance data processing systems in the past?
+
+Follow-up: How do you ensure the systems you build can scale to meet increasing demand?
+What are some of the biggest challenges you’ve faced when designing or implementing large-scale distributed systems?
+
+Follow-up: How did you overcome these challenges?
+Have you worked with technologies like Go, Kafka, Redis, and OpenSearch? Can you give examples of projects where you’ve integrated these technologies into your solutions?
+
+What’s your experience with user and entity behavior analytics (UEBA)? How would you approach building or enhancing a UEBA system?
+
+<!-- TOC --><a name="problem-solving-collaboration"></a>
+### Problem Solving & Collaboration
+This role involves leading projects across multiple teams. How do you typically approach cross-functional collaboration and ensure alignment across different stakeholders?
+
+Describe a time when you had to make a tough architectural decision. What were the trade-offs, and how did you justify your decision?
+
+Can you walk us through a project where you took end-to-end ownership? What steps did you take to ensure the project was successful, and how did you handle setbacks?
+
+<!-- TOC --><a name="leadership-mentoring"></a>
+### Leadership & Mentoring
+This role requires mentoring junior engineers. How do you foster technical excellence and help junior team members grow?
+
+Can you share an example where you led or contributed significantly to the technical direction of a product or team? What were the key outcomes?
+
+<!-- TOC --><a name="security-focus"></a>
+### Security Focus
+CrowdStrike is focused on building advanced security solutions. What’s your experience with cybersecurity principles, particularly threat detection?
+
+How do you ensure security best practices are incorporated into the design and development of cloud-native systems?
+
+Given your understanding of cybersecurity, how would you approach designing a system to defend against sophisticated cyber threats?
+
+<!-- TOC --><a name="system-monitoring-operations"></a>
+### System Monitoring & Operations
+This role requires ongoing monitoring and operational support for production systems. How have you approached system monitoring in the past? What tools have you used, and how did they help you ensure system reliability?
+
+Have you been involved in on-call rotations before? How do you handle incidents, and what steps do you take to minimize system downtime?
+
+<!-- TOC --><a name="cultural-fit-soft-skills"></a>
+### Cultural Fit & Soft Skills
+CrowdStrike values a culture of autonomy and flexibility. Can you share an example of how you've successfully worked in a high-trust environment with minimal supervision?
+
+How do you prioritize tasks in a fast-paced environment, especially when managing multiple high-priority projects?
+
+Given the rapid pace of change in cybersecurity, how do you stay up-to-date with emerging trends and technologies?
 
 ## HM
 When preparing for a Senior Software Engineer II interview at CrowdStrike, it's essential to anticipate questions that assess both your technical expertise and your alignment with the company's mission and values. Based on available information, here are some questions you might encounter:
