@@ -13,6 +13,15 @@
     - [Benefits:](#benefits-1)
     - [Limitations:](#limitations-1)
     - [Comparison of Key Metrics](#comparison-of-key-metrics)
+  - [UEBA](#ueba)
+    - [Domain Generation Algorithms (DGA) Detector](#domain-generation-algorithms-dga-detector)
+    - [Rare Program to Rare IP Detector](#rare-program-to-rare-ip-detector)
+    - [Stolen Credentials Detector](#stolen-credentials-detector)
+    - [Tactic Graphs™ Detector](#tactic-graphs-detector)
+    - [Punycode Detector](#punycode-detector)
+    - [IP Watchlist](#ip-watchlist)
+    - [Domain Watchlist](#domain-watchlist)
+  - [Summary](#summary)
   - [HMQ Specific to Role](#hmq-specific-to-role)
     - [Technical Expertise](#technical-expertise)
     - [Problem Solving \& Collaboration](#problem-solving--collaboration)
@@ -166,6 +175,62 @@ Slower real-time detection and response compared to CrowdStrike’s AI-native pl
 <!-- TOC --><a name="comparison-of-key-metrics"></a>
 ### Comparison of Key Metrics
 ![alt text](crwd.png)
+
+<!-- TOC --><a name="ueba"></a>
+## UEBA
+User and Entity Behavior Analytics (UEBA) principles are increasingly being incorporated into various detection mechanisms to enhance their effectiveness. Here's how UEBA principles can be integrated into the specific detectors you mentioned:
+
+<!-- TOC --><a name="domain-generation-algorithms-dga-detector"></a>
+### Domain Generation Algorithms (DGA) Detector
+UEBA Integration: UEBA can analyze the behavior of users or entities generating domain names. For example, if a user suddenly starts generating a large number of seemingly random domain names, this could be flagged as anomalous behavior. UEBA can also correlate this with other activities, such as unusual login times or access patterns, to identify potential malicious intent.
+
+Behavioral Baseline: Establish a baseline of normal domain generation activities for each user or entity. Any deviation from this baseline, such as a sudden spike in domain generation, can trigger an alert.
+
+<!-- TOC --><a name="rare-program-to-rare-ip-detector"></a>
+### Rare Program to Rare IP Detector
+UEBA Integration: UEBA can monitor the behavior of programs and their interactions with IP addresses. If a rarely used program suddenly starts communicating with a rare or previously unseen IP address, UEBA can flag this as suspicious. The system can also consider the context, such as whether the user typically uses this program or if the IP address is associated with known malicious activity.
+
+Contextual Analysis: UEBA can provide context by analyzing the user's historical behavior, such as whether they have previously used the program or communicated with similar IP addresses.
+
+<!-- TOC --><a name="stolen-credentials-detector"></a>
+### Stolen Credentials Detector
+UEBA Integration: UEBA can detect anomalies in login behavior that may indicate stolen credentials. For example, if a user suddenly logs in from a new location, at an unusual time, or with a different device, UEBA can flag this as suspicious. Additionally, UEBA can monitor for patterns such as rapid successive logins from different locations, which could indicate credential stuffing attacks.
+
+Behavioral Profiling: Create profiles of normal login behavior for each user, including typical login times, locations, and devices. Any deviation from this profile can trigger further investigation.
+
+<!-- TOC --><a name="tactic-graphs-detector"></a>
+### Tactic Graphs™ Detector
+UEBA Integration: Tactic Graphs™ Detector can leverage UEBA to analyze the behavior of users or entities in the context of their interactions within a graph structure. For example, if a user suddenly starts interacting with a high number of previously unconnected nodes (e.g., files, systems, or other users), this could indicate a reconnaissance or lateral movement attempt.
+
+Graph Behavior Analysis: UEBA can establish normal interaction patterns within the graph and detect anomalies, such as sudden changes in the number or type of interactions.
+
+<!-- TOC --><a name="punycode-detector"></a>
+### Punycode Detector
+UEBA Integration: UEBA can monitor the behavior of users or entities accessing Punycode domains. If a user suddenly starts accessing a large number of Punycode domains, especially those that resemble well-known domains (a technique often used in phishing attacks), UEBA can flag this as suspicious.
+
+Access Pattern Analysis: Analyze the historical access patterns of users to identify unusual spikes in Punycode domain access, particularly if these domains are not typically accessed by the user.
+
+<!-- TOC --><a name="ip-watchlist"></a>
+### IP Watchlist
+UEBA Integration: UEBA can enhance IP watchlist monitoring by analyzing the behavior of users or entities interacting with IP addresses on the watchlist. For example, if a user suddenly starts communicating with multiple IP addresses on the watchlist, UEBA can flag this as suspicious, especially if the user has no history of such interactions.
+
+Behavioral Correlation: Correlate IP watchlist hits with other behavioral anomalies, such as unusual login times or data access patterns, to identify potential threats.
+
+<!-- TOC --><a name="domain-watchlist"></a>
+### Domain Watchlist
+UEBA Integration: Similar to the IP watchlist, UEBA can monitor the behavior of users or entities accessing domains on the watchlist. If a user suddenly starts accessing multiple domains on the watchlist, especially if these domains are associated with malicious activity, UEBA can flag this as suspicious.
+
+Historical Context: Provide historical context by analyzing whether the user has previously accessed similar domains or if this behavior represents a significant deviation from their normal activity.
+
+<!-- TOC --><a name="summary"></a>
+## Summary
+Incorporating UEBA principles into these detectors involves:
+Behavioral Baselines: Establishing normal behavior patterns for users and entities.
+Anomaly Detection: Identifying deviations from these baselines that may indicate malicious activity.
+Contextual Analysis: Providing context by correlating anomalies with other behavioral data.
+Continuous Learning: Updating behavioral profiles and detection rules based on new data and evolving threats.
+
+By integrating UEBA principles, these detectors can move beyond simple rule-based detection to more sophisticated, behavior-based threat detection, improving their ability to identify and respond to advanced threats.
 
 <!-- TOC --><a name="hmq-specific-to-role"></a>
 ## HMQ Specific to Role
