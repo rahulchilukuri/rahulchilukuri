@@ -1,0 +1,83 @@
+package com.interview.ice.stock.client;
+
+import static com.github.tomakehurst.wiremock.client.WireMock.aResponse;
+import static com.github.tomakehurst.wiremock.client.WireMock.get;
+import static com.github.tomakehurst.wiremock.client.WireMock.urlEqualTo;
+
+import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.client.HttpServerErrorException;
+
+import com.github.tomakehurst.wiremock.WireMockServer;
+import com.github.tomakehurst.wiremock.client.WireMock;
+import com.github.tomakehurst.wiremock.core.WireMockConfiguration;
+//testImplementation("org.wiremock:wiremock-standalone:3.12.1")
+@ActiveProfiles("test")
+@SpringBootTest
+class ExchangeClientTest {
+
+    @Autowired
+    ExchangeClient exchangeClient;
+
+    private static WireMockServer mockServer;
+
+    private MockMvc mvc;
+
+    @BeforeAll
+    static void setup() {
+        WireMockConfiguration config = WireMockConfiguration.options().port(9090).globalTemplating(true);
+
+        mockServer = new WireMockServer(config);
+        mockServer.start();
+        WireMock.configureFor("localhost", config.portNumber());
+
+    }
+
+    @AfterAll
+    static void teardown() {
+        mockServer.stop();
+    }
+
+    @Test
+    @DisplayName("response with 200")
+    void call() {
+        mockServer.stubFor(get(urlEqualTo("/v4/latest/USD")).willReturn(aResponse()
+                .withHeader("Content-Type", "application/json")
+                .withBody(
+                        "{\"rates\":{\"USD\":1.0,\"JPY\":110.0,\"EUR\":0.9},\"base\":\"USD\",\"date\":\"2021-09-01\"}")
+                .withStatus(200)));
+
+        var result = exchangeClient.getCurrency("USD");
+        Assertions.assertThat(result).hasSize(3);
+        Assertions.assertThat(result).containsKeys("USD", "JPY", "EUR");
+    }
+
+    @Test
+    @DisplayName("response with 500")
+    void call1() {
+        mockServer.stubFor(get(urlEqualTo("/v4/latest/USD"))
+                .willReturn(aResponse().withHeader("Content-Type", "application/json").withStatus(500)));
+
+        Assertions.assertThatExceptionOfType(HttpServerErrorException.class)
+                .isThrownBy(() -> exchangeClient.getCurrency("USD"));
+    }
+
+    @Test
+    @DisplayName("response with 400")
+    void call2() {
+        mockServer.stubFor(get(urlEqualTo("/v4/latest/USD"))
+                .willReturn(aResponse().withHeader("Content-Type", "application/json").withStatus(400)));
+
+        Assertions.assertThatExceptionOfType(HttpClientErrorException.class)
+                .isThrownBy(() -> exchangeClient.getCurrency("USD"));
+    }
+
+}
