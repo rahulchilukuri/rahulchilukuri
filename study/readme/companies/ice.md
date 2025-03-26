@@ -55,6 +55,17 @@ Files are in CSV format. Files are attached in the `src/main/resources/data` fol
         | Date            | Asset Purchased data.                 |
         | Price           | Asset Purchase Price                                                    |
 
+      ```
+      Type,Name,Ticker,Quantity,Date,Price,Currency
+      Stock,Apple,AAPL,10,1/1/24,100,USD
+      Stock,Microsoft,MSFT,5,4/1/24,200,USD
+      Crypto,BitCoin,BTC,0.154,2/1/24,10000,USD
+      Fixed Income,US Treasury Bond,UTWO,4,5/2/24,500,USD
+      Stock,Apple,AAPL,4.23,6/1/24,120,USD
+      Stock,Apple,AAPL,7.248,8/1/24,100,USD
+      Stock,Microsoft,MSFT,5,7/1/24,200,USD
+      ```
+
 2. Current Market data for Assets:
     - Contains current market data for Assets.
     - These data would be used to calculate the current value of the portfolio.
@@ -77,6 +88,14 @@ Files are in CSV format. Files are attached in the `src/main/resources/data` fol
             - Volatility
         - Bond Asset Type
             - Maturity Date
+         
+         ```
+         Ticker,Type,Latest Closing Date,Latest Closing Price,Currency,Latest Dividend Yield,Volatility,Marturity Date
+         AAPL,Stock,12/12/24,247.77,USD,0.25,,
+         MSFT,Stock,12/12/24,447.65,USD,0.83,,
+         BTC,Crypto,12/12/24,1500,USD,,75%,
+         UTWO,Fixed Income,12/12/24,48.2,USD,,,3/31/25
+         ```
 
 3. Response / Result data:
     - Sample response data in below to provide the list of fields required. 
