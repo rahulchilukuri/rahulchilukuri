@@ -1,3 +1,77 @@
+# IQue
+
+1. Implement a LRU/MRU Cache
+2. Find if a sudoku is valid and also find the correct solution for it.
+3. Regex pattern matching along with java concurrenty
+4. Java concurrency using threads type problem
+5. Matrix path finding problem with weigths in each cells
+6. Behaviour style round with hiring manager Be well prepared with leetcode medium and hard problems.
+7. Tell me about a challenging project that you worked on.
+8. Meeting Room II in LeetCode.
+9. windowed hashmap design. Windowed Average problem (you would need to implement a cache where each item has an expiration time, you would also need to return the average of the valid elements in the cache at any given point time
+10. Dijkstra Algorithm, threads, semaphores, mutex
+11. Create a data structure that can perform CRUD operations on data coming in a time period
+12. wildcard pattern matching using Dynamic Programming(Given a string and a pattern with wildcard, return true if the pattern matches the string)
+13.  One Distributed system design and one Linux/K8s
+14.  Two of the technical interviews were system design and architecture questions. It is meant to test your knowledge of distributed systems, databases, replication, caching, etc.
+15.  Make sure you are current on threading/concurrency, data structures (trees especially), and other algorithmic types of problems
+16.  URL shortener
+17.  Involves implementing a multi-threaded data structure. I highly recommend revising up on Locks, Condition Variables and other language primitives to starting on this
+18.  number queue with avg
+
+Glassdoor questions:
+
+- Given a game to you which is running on an instance and hasMySQL installed on it locally, now with the game popularity increasing, suggest ways that it stays highly secure and highly available and then with every step he was adding more things on it, like we want to use JWT on it, should we use it? session maintenance etc.
+- URL shortener in Go
+- MRU cache implementation in java or Go
+- Distributed Systems, Coding Comprehension 
+- garbage collection in Java
+- SFDC related experience
+- debounce function
+- Memory management for Java applications
+- serialise a binary tree?
+- LRU Cache
+- Count trailing zeroes in factorial of a number
+
+
+Hackernews questions:
+
+- How do you design a CDN form scratch?
+- How would you design a Distributed hash table?
+- Experience with `go trace` to debug memory leak in Go
+- Analyze memory footprint of a class in Java vs. Go struct
+- Garbage collection pauses in Java JVM are common, we can set a soft limit for pauses: -XX:MaxGCPauseMillis=200
+- Go uses concurrent garbage collection that runs concurrently with the main thread:
+  > initially introduced 2014: https://github.com/golang/go/issues/9477
+  > incorprated into Go compiler 2016: https://go-review.googlesource.com/c/go/+/23540
+  Also Go compiler unlike Java compiler favors more heap than stack so less memory footprint overall. Remember GC runs on heap and not 
+  stack and stack memory doesn't get de-allocated once its allocated at the beginning of the program.
+
+GitHub questions:
+- Variant of Run-length encoding
+- Minimum Number of Platforms Required for a Railway/Bus Station (basic scheduling for distributed systems)
+
+# IQue LC
+## q1
+First round was technical - Windowed Average problem (you would need to implement a cache where each item has an expiration time, you would also need to return the average of the valid elements in the cache at any given point time.)
+
+Design round 1(API design) - Spotify like system. Design APIs to retrieve X podcast channels at a time, X audio clips per podcast channel, Database design and high level component design [pagination, skip tokens, limit/offset, api versioning, back of the napkin calculation for number of users to number of podcast channels, podcast channel to number of audio clips per channel, corner cases[users subscribed to a lot of channels, channels with a lot of videos, etc.,]]
+
+Coding round: Given a filled sudoku board, validate if the board is solved or not [optimize the number of traversals through the board - attempt at solving in 1 traversal] - Add test cases and make sure it runs and passes.
+As an extension, given an unsolved board how do you solve it (backtracking with recursion - did not have to implement this)
+
+Design round: TinyUrl (Constraints: optimize only for high volume of reads - a simple singleton service with a sharded database(range based sharding on short url would suffice. You can add more read replicas with additional caching at the edge if needed). Do not make it complex
+
+Behavior - Talk about a project you are most proud of, understand the technical details, the business use case. Talk about the challenges, conflicts that came about, etc.,
+
+Coding - Given a list of documents [Pair of id and content], return the list of documentIds for a given search phrase. Dictionary of documentId to dictionary of string and their index - Use this to then check for a given search phrase.
+
+## q2
+1. Windowed average
+2. Url shortener
+3. Task scheduler
+4. Feed generation(rss feeds, focus on apis)
+
 # Cloud Networking and Security: A Brief Technical Writeup
 Cloud networking and security are intertwined disciplines crucial for organizations leveraging cloud computing. They address the challenges of extending traditional network and security paradigms to the dynamic and distributed nature of cloud environments.
 
