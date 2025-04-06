@@ -1,15 +1,15 @@
 class DLL {
-	public DLL next;
-	public DLL prev;
-	public int val;
-	public int key;
+    public DLL next;
+    public DLL prev;
+    public int val;
+    public int key;
     public int freq;
-	
-	DLL(int key, int val) {
-		this.key = key;
-		this.val = val;
+    
+    DLL(int key, int val) {
+        this.key = key;
+        this.val = val;
         this.freq = 1;
-	}
+    }
 }
 
 class LFUCache {
@@ -27,18 +27,18 @@ class LFUCache {
         return head;
     }
 
-	void remove(DLL node) {
-		node.prev.next = node.next;
-		node.next.prev = node.prev;
-	}    
+    void remove(DLL node) {
+        node.prev.next = node.next;
+        node.next.prev = node.prev;
+    }    
 
-	void addToFront(DLL head, DLL node) {
-		node.prev = head;
-		node.next = head.next;
-		
-		head.next.prev = node;
-		head.next = node;
-	}    
+    void addToFront(DLL head, DLL node) {
+        node.prev = head;
+        node.next = head.next;
+        
+        head.next.prev = node;
+        head.next = node;
+    }    
 
     public LFUCache(int capacity) {
         this.capacity = capacity;
