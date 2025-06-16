@@ -1,3 +1,161 @@
+🎯 What SREs at Splunk Will Likely Probe
+Given their role and the job description, expect questions that evaluate:
+
+Platform reliability and scalability at scale
+
+Kubernetes internals and multi-cloud orchestration
+
+Observability, incident response, and SLOs
+
+Infrastructure-as-Code (especially Terraform) and CI/CD
+
+Resilience and disaster recovery across cloud boundaries
+
+Leadership and mentorship on reliability and operational maturity
+***
+✅ High-Probability Interview Questions & Strong Framing
+🔧 1. How do you manage Kubernetes at scale across multiple cloud providers?
+Why they’re asking: Multi-cloud orchestration is core to this role. They want to hear how you deal with config drift, upgrades, security, and uniformity across clusters.
+
+Key points to hit:
+
+Use of a GitOps model (e.g. ArgoCD or Flux)
+
+Helm chart lifecycle management
+
+Cluster provisioning and standardization via Terraform modules
+
+Multi-cloud abstraction and secrets handling (e.g. Vault, external secrets)
+
+Centralized observability for cross-cloud insights
+***
+🛠 2. Describe how you would ensure high availability and resiliency of a Kubernetes-based platform.
+Why they’re asking: They need to know how you architect for failure and mitigate blast radius.
+
+Key points:
+
+Pod disruption budgets, anti-affinity, readiness/liveness probes
+
+Horizontal Pod Autoscaling (HPA) and Cluster Autoscaler
+
+Rolling updates with canary/staged rollouts
+
+Regional failover, multi-zone deployments
+
+Self-healing constructs and chaos engineering
+***
+💣 3. Tell us about a production incident. What went wrong, how did you respond, and what did you learn?
+Why they’re asking: SREs care deeply about your incident management maturity.
+
+Structure your story:
+
+Clear timeline of event
+
+Root cause analysis (e.g., memory leak, bad deploy, DNS misconfig)
+
+Metrics/logs/tracing used to triage
+
+Fix and follow-up actions (e.g., alert tuning, circuit breakers, runbook updates)
+
+Postmortem culture: blameless, learnings shared org-wide
+***
+📊 4. How do you measure and improve reliability?
+Why they’re asking: They want to know if you think in terms of SLOs and user impact.
+
+Mention:
+
+SLI/SLOs for control plane vs. data plane
+
+Error budgets and gating deploys
+
+Reducing MTTR via better observability
+
+Dependency mapping and risk assessments
+***
+🌎 5. How do you ensure Terraform changes are safe, scalable, and reviewable across teams?
+Key points:
+
+Modular Terraform with versioned modules per cloud provider
+
+Use of CI tools to run terraform plan and tflint for validation
+
+State management with remote backends (e.g. S3 + DynamoDB, GCS + Locking)
+
+Peer review process and documentation
+
+Automation around plan approvals (e.g., Atlantis, Spacelift)
+***
+⚙️ 6. What’s your experience with ArgoCD and Helm?
+They’re likely using GitOps. Show:
+
+Multi-tenancy with ArgoCD projects
+
+Sync waves and hooks
+
+Helm templating, parameterization, and secret management
+
+Chart testing and lifecycle handling (e.g., upgrades with CRD diffs)
+***
+🔬 7. How do you design observability into platform components?
+Include:
+
+OpenTelemetry or Prometheus metrics
+
+Logging standardization with Fluentbit/Fluentd/Vector → Splunk
+
+Distributed tracing across microservices (e.g., Jaeger or Tempo)
+
+Custom metrics for platform components like the scheduler or controllers
+
+Dashboards that reflect SLO health
+***
+🤝 8. How do you align dev team velocity with platform reliability goals?
+Frame it like this:
+
+Use of error budgets to balance velocity vs. reliability
+
+Shift-left reliability: testing infra, chaos, perf in CI
+
+Self-service tools: e.g., deployment scaffolding with built-in SLOs
+
+Mentoring dev teams on ownership without overload
+***
+🧠 9. Can you describe your leadership style when it comes to cross-team architectural decisions?
+They’re hiring for influence, not just code. Talk about:
+
+Facilitating architecture working groups or design reviews
+
+Driving adoption through RFCs, shared roadmaps, and PoCs
+
+Building alignment with SREs by surfacing operational impact early
+
+Teaching through pairing, documentation, and brown-bags
+
+🛠 Tools/Tech Stack to Mention (from job spec)
+Golang
+
+Kubernetes SDKs / Operators (Kubebuilder, OperatorSDK)
+
+Helm, ArgoCD, Terraform
+
+AWS/GCP/Azure APIs
+
+CI/CD automation (GitHub Actions, Jenkins, Spinnaker, etc.)
+
+Observability: Prometheus, Splunk, Grafana, Fluentbit
+***
+✅ Tips for the Interview with SREs
+Talk about trade-offs: SREs value pragmatic decisions over perfect architecture.
+
+Use concrete incidents: Show how your technical and leadership actions improved reliability.
+
+Be collaborative: Emphasize working with SREs to set standards, not dumping work on them.
+
+Frame answers around real user impact: That’s how SREs measure success.
+
+
+***
+
 <pre>
 [ Clients / Services ]
         |
