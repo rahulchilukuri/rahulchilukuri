@@ -152,10 +152,233 @@ Use concrete incidents: Show how your technical and leadership actions improved 
 Be collaborative: Emphasize working with SREs to set standards, not dumping work on them.
 
 Frame answers around real user impact: That’s how SREs measure success.
+***
+
+🧠 1. Kubernetes Core Architecture (High-Level View)
+Kubernetes is a distributed system built on the control plane + data plane model:
+
+Control Plane: Maintains the desired state of the cluster.
+
+Nodes (Data Plane): Run containers and enforce the desired state.
+
+⚙️ 2. Control Plane Internals (In Depth)
+🔹 API Server (kube-apiserver)
+Acts as the front door to the Kubernetes control plane.
+
+All components interact with the API server via REST or via CRDs/CRs.
+
+Backed by etcd as the persistent store.
+
+It performs admission control, authentication/authorization, and validation.
+
+🔹 etcd
+Strongly consistent distributed key-value store.
+
+Stores the entire cluster state.
+
+Uses Raft consensus to replicate data.
+
+You should understand etcd snapshots, defrag, quorum loss handling, and compaction.
+
+🔹 Controller Manager (kube-controller-manager)
+Contains various control loops:
+
+ReplicaSetController, DeploymentController, JobController, etc.
+
+Continuously reconciles desired state (from etcd) with actual state (via API Server).
+
+Example: If a Pod dies, the ReplicaSetController will create a new one.
+
+🔹 Scheduler (kube-scheduler)
+Assigns unscheduled Pods to nodes.
+
+Uses scoring and filtering (e.g., taints/tolerations, nodeSelector, affinity/anti-affinity, resource availability).
+
+Implements predicates (filters) and priorities (scores) — customizable via scheduling profiles or plugins.
+
+📦 3. Node Internals & Kubelet
+🔸 Kubelet
+Agent running on each node.
+
+Talks to the container runtime (CRI: containerd, CRI-O).
+
+Watches for assigned Pods from the API server.
+
+Pulls the image, mounts volumes, configures networking, and reports node & pod status back to the API server.
+
+Manages liveness and readiness probes.
+
+🔸 Container Runtime Interface (CRI)
+Abstraction that allows Kubernetes to run containers.
+
+containerd and CRI-O are the most common runtimes today (Docker is deprecated as a runtime).
+
+CRI deals with pulling images, starting/stopping containers, etc.
+
+🔸 kube-proxy
+Manages services and load balancing.
+
+Implements iptables or IPVS rules for service-to-pod routing.
+
+Manages cluster IP and external IPs, and can be replaced by CNI-aware solutions like Cilium or Calico.
+
+🌐 4. Kubernetes Networking Internals
+Key Principles:
+Every Pod gets its own IP address.
+
+All Pods can talk to all other Pods without NAT.
+
+Services provide stable endpoints via virtual IPs and selectors.
+
+Container Networking Interface (CNI)
+Plugin interface for networking (Calico, Flannel, Cilium, etc.).
+
+Handles IP address management, routing, and network policy enforcement.
+
+Network Policies
+Layer 3/4 firewall rules applied at the pod level.
+
+Useful for zero trust and multi-tenancy isolation.
+
+🔄 5. Scheduling, Affinity, and Resource Management
+Scheduler filters nodes using:
+
+Node health, taints/tolerations
+
+Pod affinity/anti-affinity
+
+Topology spread constraints
+
+Scores nodes using:
+
+Resource availability
+
+Pod locality (data gravity)
+
+Resource QoS classes:
+
+Guaranteed, Burstable, and BestEffort — based on requests/limits
+
+Preemption: Lower-priority Pods can be evicted to make room for higher-priority Pods.
+
+🚨 6. Fault Tolerance and Self-Healing
+Liveness probes: Restart a Pod if it's unhealthy.
+
+Readiness probes: Exclude Pod from Service endpoints if not ready.
+
+Horizontal Pod Autoscaler (HPA): Scales pods based on CPU/memory or custom metrics.
+
+Vertical Pod Autoscaler (VPA): Adjusts resource requests/limits.
+
+Cluster Autoscaler: Adds/removes nodes based on pending Pods.
+
+🔍 7. Custom Controllers & Extending Kubernetes
+Custom Resource Definitions (CRDs) allow you to add new APIs to Kubernetes.
+
+Operators (using Kubebuilder or Operator SDK):
+
+Reconcile logic for custom resources.
+
+Useful for managing complex stateful workloads like databases or queues.
+
+🔐 8. Kubernetes Security Internals
+RBAC: Role-based access control via Roles and RoleBindings.
+
+Pod Security Admission (PSA): Replaces PodSecurityPolicy.
+
+Secrets management: Integrated or external (Vault, AWS Secrets Manager).
+
+Node isolation via PodSecurityContext, seccomp, AppArmor, and SELinux.
+
+TLS everywhere: API server, kubelet, etcd all use mTLS.
+
+Admission controllers: e.g., OPA Gatekeeper for policy enforcement.
+
+📈 9. Observability & Troubleshooting Internals
+Metrics: via kube-state-metrics, node exporter, cAdvisor.
+
+Logging: centralized collection via Fluentd/Vector to Splunk.
+
+Tracing: OpenTelemetry for distributed tracing across services.
+
+Debugging tools:
+
+kubectl exec, kubectl logs, kubectl describe, kubectl debug
+
+events, Evicted Pods, and OOMKilled statuses
+
+Audit logs: API server request logs for compliance & forensics.
+
+🎯 For Interview Readiness: Be Ready To…
+Explain how controllers reconcile state.
+
+Diagram the lifecycle of a Pod from manifest to running state.
+
+Troubleshoot a failed deployment with multiple layers (e.g. readiness probe failing).
+
+Describe how the scheduler selects a node and what happens if none are suitable.
+
+Compare CNI plugins and their trade-offs.
+
+Talk about operating Kubernetes across cloud providers (e.g. GKE vs. EKS vs. AKS differences).
+
+Explain how to upgrade clusters, apply security patches, or roll out kubelet updates safely.
+
+📌 TL;DR: If You’re Asked “What’s Your Depth in Kubernetes?”
+You should be able to confidently say:
+
+“I understand Kubernetes from the control plane internals to the node-level operations. I’ve worked with operators and CRDs, built GitOps pipelines with ArgoCD, managed cross-cloud clusters with Terraform, and designed HA/resilient architectures using native constructs like HPA, PDBs, and affinity rules. I can debug scheduling issues, tune kubelet performance, and help teams write platform-aware applications that behave reliably at scale.”
+
+***
+🧠 Principal Engineer – Kubernetes Internals: Full Question Set
+🔹 Section 1: Control Plane & Reconciliation
+"Walk me through what happens, in detail, from the moment a Deployment is applied to Kubernetes, to when pods are running and serving traffic. Include all relevant controllers and components."
+
+"What happens internally when you delete a namespace with resources still running inside it? Why might it hang, and how would you troubleshoot it?"
+
+"Explain how the reconciliation loop works in Kubernetes. What happens if the actual state drifts from the desired state?"
+
+🔹 Section 2: Scheduling, Nodes, and Failure Handling
+"How does the Kubernetes scheduler assign a pod to a node? Describe the filtering and scoring process in detail."
+
+"What mechanisms does Kubernetes use to evict pods when a node runs out of memory? How do oom_score_adj, QoS classes, and resource requests/limits affect eviction?"
+
+"How would you debug a pod that remains in Pending state for an extended period?"
+
+"Describe how taints, tolerations, affinity/anti-affinity, and topology spread constraints work together in scheduling decisions."
+
+🔹 Section 3: Multi-Cloud and Scalability
+"What are the biggest challenges of operating Kubernetes across AWS, GCP, and Azure? How do you ensure consistent platform behavior?"
+
+"How do you safely upgrade Kubernetes clusters across providers while minimizing downtime and user impact?"
+
+"Describe your experience managing Kubernetes infrastructure using Terraform. How do you organize code, manage state, and safely roll out cluster changes?"
+
+🔹 Section 4: Observability & Operational Excellence
+"How do you design observability into the Kubernetes platform itself, not just the workloads running on it?"
+
+"How would you implement distributed tracing across services running in Kubernetes? What changes are required at the infrastructure and application level?"
+
+"What metrics would you track to know the control plane is healthy? What about node-level metrics?"
+
+"What is your approach to performing a root cause analysis for a cluster-wide outage involving multiple services?"
+
+🔹 Section 5: Security and Custom Extensions
+"What are the risks of using Kubernetes secrets, and how do you mitigate them in production environments?"
+
+"Describe a time you built or extended a Kubernetes operator. What problem did it solve, and how did you design the reconciliation logic?"
+
+"How do admission controllers work? Give an example of how you'd use one to enforce security policies."
+
+🔹 Section 6: Real-World Scenarios
+"We’re seeing random pod restarts in multiple namespaces across nodes in a GKE cluster. Walk us through your debugging approach."
+
+"How would you implement a blue/green or canary rollout process in Kubernetes, integrated with ArgoCD and Helm?"
+
+"Describe how you would test the resilience of the platform — including control plane components, node failure, and zonal outages."
 
 
 ***
-
 <pre>
 [ Clients / Services ]
         |
