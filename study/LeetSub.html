@@ -17,6 +17,98 @@
  <a href=https://github.com/theshubham99/leetcode-to-pdf class=button target=_blank>View Source Code</a>
  </div>
  </div>
+
+  <div class=question>
+ <div class=title>
+ </div>
+<div class=description>
+ <h2>Description</h2>
+ <p>Rolling/Sliding Window hash technique</p>
+<ul>
+<pre>
+<code>
+import java.util.*;
+
+public class RabinKarp {
+
+    static final int p = 31; // Prime base
+    static final int mod = (int)1e9 + 9; // Large prime modulus
+
+    // Main method: returns starting indices of matches
+    public static List<Integer> rabinKarp(String text, String pattern) {
+        int n = text.length();
+        int m = pattern.length();
+
+        long patternHash = 0;
+        long currentHash = 0;
+
+        long[] pPow = new long[Math.max(n, m)];
+        pPow[0] = 1;
+
+        // Precompute powers of p
+        for (int i = 1; i < pPow.length; i++) {
+            pPow[i] = (pPow[i - 1] * p) % mod;
+        }
+
+        // Compute hash of pattern and first window of text
+        for (int i = 0; i < m; i++) {
+            patternHash = (patternHash + (pattern.charAt(i) - 'a' + 1) * pPow[i]) % mod;
+            currentHash = (currentHash + (text.charAt(i) - 'a' + 1) * pPow[i]) % mod;
+        }
+
+        List<Integer> result = new ArrayList<>();
+
+        for (int i = 0; i <= n - m; i++) {
+            if (patternHash == currentHash) {
+                // Optional: Verify by direct string comparison to avoid false positives
+                if (text.substring(i, i + m).equals(pattern)) {
+                    result.add(i);
+                }
+            }
+
+            if (i + m < n) {
+                // Remove leading character and add trailing character
+                currentHash = (currentHash - (text.charAt(i) - 'a' + 1) + mod) % mod;
+                currentHash = (currentHash * modInverse(p, mod)) % mod;
+                currentHash = (currentHash + ((text.charAt(i + m) - 'a' + 1) * pPow[m - 1]) % mod) % mod;
+            }
+        }
+
+        return result;
+    }
+
+    // Compute modular inverse using Fermat’s Little Theorem
+    private static long modInverse(long a, long mod) {
+        return pow(a, mod - 2, mod);
+    }
+
+    // Fast modular exponentiation
+    private static long pow(long base, long exp, long mod) {
+        long result = 1;
+        base %= mod;
+        while (exp > 0) {
+            if ((exp & 1) == 1) {
+                result = (result * base) % mod;
+            }
+            base = (base * base) % mod;
+            exp >>= 1;
+        }
+        return result;
+    }
+
+    // Example usage
+    public static void main(String[] args) {
+        String text = "abracadabra";
+        String pattern = "abra";
+        List<Integer> positions = rabinKarp(text, pattern);
+        System.out.println("Pattern found at indices: " + positions);
+    }
+}
+</code>
+</pre>
+ </div>
+</div>
+
  
   <div class=question>
  <div class=title>
